@@ -1483,8 +1483,14 @@ button {
   }
 
   .hero__titre {
-    font-size: clamp(2rem, 9vw, 3rem);
+    font-size: clamp(1.75rem, 7.5vw, 2.4rem);
     line-height: 1.05;
+  }
+
+  .hero__sous-titre {
+    max-width: 100%;
+    font-size: 0.87rem;
+    padding: 0 0.25rem;
   }
 
   .hero__stats {
@@ -2371,6 +2377,10 @@ button {
 @media (max-width: 768px) {
   .menu-filtres__inner { padding: 0 1rem; }
 
+  .menu-hero {
+    min-height: 78dvh;
+  }
+
   .sandwichs-bento {
     grid-template-columns: 1fr;
   }
@@ -3172,5 +3182,33 @@ a.coord-carte__valeur:hover {
 
   .form-col {
     padding: 1.5rem;
+  }
+}
+
+/* ===========================
+   Corrections mobiles
+=========================== */
+
+@media (max-width: 768px) {
+
+  /* Contact — badge "Contact" sur fond sombre */
+  .contact-form-hero .section-badge {
+    color: var(--jaune);
+    background: rgba(251, 186, 94, 0.12);
+    border-color: rgba(251, 186, 94, 0.28);
+  }
+
+  /* Nous trouver — centrage titre et description */
+  .contact-hero__conteneur {
+    text-align: center;
+  }
+
+  .contact-hero__sous-titre {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-hero__pills {
+    justify-content: center;
   }
 }
