@@ -1,5 +1,5 @@
-jaune : #fdda00, rgba(253, 218, 0), hsl(52, 100, 50)
+noir : #010101, rgba(1, 1, 1), hsl(0, 0, 0)
 
-vert : #90ec63, rgba(144, 236, 99), hsl(100, 78, 66)
+beige : #cfa264, rgba(207, 162, 100), hsl(35, 53, 60)
 
-marron : #a47955, rgba(164, 121, 85), hsl(27, 32, 49)
+blanc : #ffffff (le fond du site sera en blanc pour la visiblité sur logo)

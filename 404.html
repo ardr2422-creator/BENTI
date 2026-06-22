@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page introuvable — Kayani Kitchen</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="images/logo%20kayani%20kitchen%20fond%20transparent.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}</style></noscript>
+</head>
+<body>
+  <header>
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a class="nav-logo" href="index.html" aria-label="Kayani Kitchen — accueil">
+        <img src="images/logo%20kayani%20kitchen%20fond%20transparent.png" alt="Kayani Kitchen" width="160" height="48" />
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Accueil</a>
+        <a class="nav-link" href="menu.html">Menu</a>
+        <a class="nav-link" href="notre-histoire.html">Notre histoire</a>
+        <a class="nav-link" href="nous-trouver.html">Nous trouver</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn btn--gold" href="menu.html"><span>Voir le menu</span></a>
+      </div>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-overlay">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="container">
+      <nav class="nav-overlay__links" aria-label="Navigation mobile">
+        <a href="index.html">Accueil</a>
+        <a href="menu.html">Menu</a>
+        <a href="notre-histoire.html">Notre histoire</a>
+        <a href="nous-trouver.html">Nous trouver</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="page-hero" style="min-height:100svh;display:flex;align-items:center">
+      <img class="page-hero__bg" src="images/image%20d'illustration2.jpg" alt="" aria-hidden="true" />
+      <div class="page-hero__veil"></div>
+      <div class="container text-center">
+        <p class="eyebrow eyebrow--center eyebrow--light">Erreur 404</p>
+        <h1 style="font-size:var(--step-5)">Cette page a filé… <em class="serif-accent" style="color:var(--gold)">comme un bon biryani.</em></h1>
+        <p class="lead measure" style="margin:1.2rem auto 0">La page que vous cherchez n'existe pas ou a été déplacée. Revenons à l'essentiel : la cuisine.</p>
+        <div class="btn-row" style="justify-content:center;margin-top:2rem">
+          <a class="btn btn--gold" href="index.html"><span>Retour à l'accueil</span></a>
+          <a class="btn btn--ghost-light" href="menu.html"><span>Voir le menu</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

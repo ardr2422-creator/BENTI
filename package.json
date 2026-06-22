@@ -1,16 +1,20 @@
 {
-  "name": "chicken-story",
-  "version": "1.0.0",
-  "description": "Site vitrine Chicken Story - Fast-food poulet frit Île-de-France",
-  "main": "src/server.js",
+  "name": "kayani-kitchen",
+  "version": "0.1.0",
+  "description": "Site vitrine premium — Kayani Kitchen, cuisine indo-pakistanaise (Sannois, 95). Site statique (HTML/CSS/JS), sans base de données.",
+  "private": true,
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "node server.js",
+    "start": "node server.js",
+    "autostart:install": "powershell -NoProfile -ExecutionPolicy RemoteSigned -File tools/install-autostart.ps1",
+    "autostart:uninstall": "powershell -NoProfile -ExecutionPolicy RemoteSigned -File tools/uninstall-autostart.ps1"
   },
-  "dependencies": {
-    "express": "^4.18.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+  "keywords": [
+    "kayani-kitchen",
+    "restaurant",
+    "indo-pakistanais",
+    "site-vitrine",
+    "sannois"
+  ],
+  "license": "UNLICENSED"
 }
