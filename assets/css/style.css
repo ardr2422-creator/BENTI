@@ -801,13 +801,14 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translate(-50%, -50%) r
   top: clamp(5.5rem, 4.5rem + 3vw, 7.5rem);
   z-index: 40;
   display: flex;
+  justify-content: safe center;
   gap: 0.4rem;
   overflow-x: auto;
-  overflow-y: hidden;          /* pas de défilement vertical parasite */
-  touch-action: pan-x;         /* le geste vertical fait défiler la page, l'horizontal le menu */
+  overflow-y: hidden;
+  touch-action: pan-x;
   overscroll-behavior-x: contain;
   padding: 0.5rem;
-  margin-bottom: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+  margin-bottom: clamp(3rem, 2.5rem + 3vw, 5rem);
   background: rgba(250, 246, 239, 0.94);
   backdrop-filter: blur(12px);
   border: 1px solid var(--line);
@@ -856,7 +857,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translate(-50%, -50%) r
 .filter-chip:active { transform: scale(0.97); }
 .filter-chip.is-on { background: var(--gold); border-color: var(--gold); color: var(--ink); }
 
-.menu-category { scroll-margin-top: 12rem; margin-bottom: clamp(3rem, 2rem + 3vw, 5rem); }
+.menu-category { scroll-margin-top: 14rem; margin-bottom: clamp(3rem, 2rem + 3vw, 5rem); }
 .menu-category__head {
   display: flex;
   align-items: baseline;
@@ -1495,6 +1496,36 @@ body.nav-open .nav-overlay__cta { opacity: 1; transform: none; }
   font-style: normal;
 }
 
+/* Sélecteur de cliniques (nous-trouver.html) */
+.loc-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  padding: 0.4rem;
+  background: var(--sand);
+  border-radius: var(--r-pill);
+  width: fit-content;
+}
+.loc-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: none;
+  background: transparent;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: background var(--dur-hover), color var(--dur-hover);
+  text-align: left;
+}
+.loc-tab__city { font-family: var(--font-display); font-weight: 700; font-size: var(--step-0); color: var(--ink-soft); transition: color var(--dur-hover); }
+.loc-tab__region { font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); transition: color var(--dur-hover); }
+.loc-tab.is-active { background: var(--ink); }
+.loc-tab.is-active .loc-tab__city { color: var(--cream); }
+.loc-tab.is-active .loc-tab__region { color: var(--on-dark-soft); }
+.loc-tab:hover:not(.is-active) .loc-tab__city { color: var(--ink); }
+.loc-panel.is-hidden { display: none; }
+
 .location-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1811,7 +1842,7 @@ body.nav-open .nav-overlay__cta { opacity: 1; transform: none; }
 
 /* ---------- L'ordonnance : carte façon liste de prescription ---------- */
 .menu-filters { justify-content: center; }
-.rx-sheet { scroll-margin-top: 11rem; margin-bottom: clamp(2.6rem, 2rem + 3vw, 4.5rem); }
+.rx-sheet { scroll-margin-top: 14rem; margin-bottom: clamp(2.6rem, 2rem + 3vw, 4.5rem); }
 .rx-sheet.is-hidden, .rx-line.is-hidden, .menu-nav__btn.is-hidden { display: none; }
 .rx-sheet__head {
   display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem;

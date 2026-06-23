@@ -4,7 +4,6 @@
   var DATA = window.DRWINGS_MENU || [];
   var navRoot = document.getElementById("menu-nav");
   var root = document.getElementById("menu-root");
-  var filterRoot = document.getElementById("menu-filters");
   var emptyEl = document.getElementById("menu-empty");
   if (!root) return;
 
@@ -13,7 +12,6 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
-  function euro(n) { return n.toFixed(2).replace(".", ",") + " €"; }
   function chilis(d) {
     var s = "";
     for (var i = 1; i <= 5; i++) s += '<i class="' + (i <= d ? "on" : "") + '"></i>';
@@ -39,7 +37,6 @@
     el.innerHTML =
       '<div class="rx-line__top">' +
         '<h3 class="rx-line__name">' + flag + esc(item.nom) + "</h3>" +
-        '<span class="rx-line__price">' + euro(item.prix) + "</span>" +
       "</div>" +
       (item.desc ? '<p class="rx-line__desc">' + esc(item.desc) + "</p>" : "") +
       '<div class="rx-line__meta">' + meta + "</div>";
@@ -78,54 +75,6 @@
       btn.href = "#" + cat.id;
       btn.textContent = cat.nom;
       navRoot.appendChild(btn);
-    });
-  }
-
-  // --- Filtres ---
-  var FILTERS = [
-    { k: "all", label: "Tout" },
-    { k: "signature", label: "🐓 Wings signatures" },
-    { k: "spicy", label: "🔥 Ça pique" },
-    { k: "star", label: "★ Best-sellers" }
-  ];
-  function matches(line, k) {
-    if (k === "all") return true;
-    if (k === "signature") return line.getAttribute("data-cat") === "wings-signature";
-    if (k === "spicy") return parseInt(line.getAttribute("data-dosage"), 10) >= 3;
-    if (k === "star") return line.getAttribute("data-star") === "1";
-    return true;
-  }
-  function applyFilter(k) {
-    var sheets = root.querySelectorAll(".rx-sheet");
-    var anyVisible = false;
-    sheets.forEach(function (sheet) {
-      var lines = sheet.querySelectorAll(".rx-line");
-      var visibleInSheet = 0;
-      lines.forEach(function (line) {
-        var ok = matches(line, k);
-        line.classList.toggle("is-hidden", !ok);
-        if (ok) visibleInSheet++;
-      });
-      sheet.classList.toggle("is-hidden", visibleInSheet === 0);
-      var navBtn = navRoot && navRoot.querySelector('[href="#' + sheet.id + '"]');
-      if (navBtn) navBtn.classList.toggle("is-hidden", visibleInSheet === 0);
-      if (visibleInSheet > 0) anyVisible = true;
-    });
-    if (emptyEl) emptyEl.classList.toggle("is-shown", !anyVisible);
-  }
-  if (filterRoot) {
-    FILTERS.forEach(function (f, idx) {
-      var chip = document.createElement("button");
-      chip.type = "button";
-      chip.className = "filter-chip" + (idx === 0 ? " is-on" : "");
-      chip.textContent = f.label;
-      chip.setAttribute("data-filter", f.k);
-      chip.addEventListener("click", function () {
-        filterRoot.querySelectorAll(".filter-chip").forEach(function (c) { c.classList.remove("is-on"); });
-        chip.classList.add("is-on");
-        applyFilter(f.k);
-      });
-      filterRoot.appendChild(chip);
     });
   }
 
