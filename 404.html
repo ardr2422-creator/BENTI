@@ -1,32 +1,34 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page introuvable — Kayani Kitchen</title>
+  <title>Patient introuvable (404) — Dr Wings</title>
   <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/png" href="images/logo%20kayani%20kitchen%20fond%20transparent.png" />
+  <meta name="theme-color" content="#ffe3df" />
+  <link rel="icon" type="image/png" href="images/logo-dr-wings.png" />
+  <link rel="apple-touch-icon" href="images/logo-dr-wings.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}</style></noscript>
 </head>
 <body>
   <header>
     <nav class="site-nav" aria-label="Navigation principale">
-      <a class="nav-logo" href="index.html" aria-label="Kayani Kitchen — accueil">
-        <img src="images/logo%20kayani%20kitchen%20fond%20transparent.png" alt="Kayani Kitchen" width="160" height="48" />
+      <a class="nav-logo" href="index.html" aria-label="Dr Wings — accueil">
+        <img src="images/logo-dr-wings.png" alt="Dr Wings" width="160" height="64" />
       </a>
       <div class="nav-links">
         <a class="nav-link" href="index.html">Accueil</a>
-        <a class="nav-link" href="menu.html">Menu</a>
-        <a class="nav-link" href="notre-histoire.html">Notre histoire</a>
+        <a class="nav-link" href="menu.html">La carte</a>
+        <a class="nav-link" href="notre-histoire.html">La clinique</a>
         <a class="nav-link" href="nous-trouver.html">Nous trouver</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
       <div class="nav-cta">
-        <a class="btn btn--gold" href="menu.html"><span>Voir le menu</span></a>
+        <a class="btn btn--gold" href="menu.html"><span>Voir la carte</span></a>
       </div>
       <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-overlay">
         <span></span><span></span><span></span>
@@ -35,11 +37,14 @@
   </header>
 
   <div class="nav-overlay" id="nav-overlay">
+    <button class="nav-overlay__close" aria-label="Fermer le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
     <div class="container">
       <nav class="nav-overlay__links" aria-label="Navigation mobile">
         <a href="index.html">Accueil</a>
-        <a href="menu.html">Menu</a>
-        <a href="notre-histoire.html">Notre histoire</a>
+        <a href="menu.html">La carte</a>
+        <a href="notre-histoire.html">La clinique</a>
         <a href="nous-trouver.html">Nous trouver</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -47,21 +52,24 @@
   </div>
 
   <main id="main">
-    <section class="page-hero" style="min-height:100svh;display:flex;align-items:center">
-      <img class="page-hero__bg" src="images/image%20d'illustration2.jpg" alt="" aria-hidden="true" fetchpriority="high" decoding="async" />
-      <div class="page-hero__veil"></div>
+    <section class="tile" style="min-height:100svh;display:flex;align-items:center;padding-top:7rem;padding-bottom:3rem">
       <div class="container text-center">
-        <p class="eyebrow eyebrow--center eyebrow--light">Erreur 404</p>
-        <h1 style="font-size:var(--step-5)">Cette page a filé… <em class="serif-accent" style="color:var(--gold)">comme un bon biryani.</em></h1>
-        <p class="lead measure" style="margin:1.2rem auto 0">La page que vous cherchez n'existe pas ou a été déplacée. Revenons à l'essentiel : la cuisine.</p>
+        <img src="images/logo-dr-wings.png" alt="" aria-hidden="true" style="width:clamp(5rem,8vw,7.5rem);height:auto;margin:0 auto 1.5rem" />
+        <p class="eyebrow eyebrow--center">Erreur 404 · Patient introuvable</p>
+        <h1 style="font-size:var(--step-5);color:var(--ink);margin-top:0.6rem">Cette page est sortie<br />sans laisser <em style="font-family:var(--font-marker);font-style:normal;color:var(--gold);font-size:1.12em">d'ordonnance.</em></h1>
+        <p class="lead measure" style="margin:1.3rem auto 0;color:var(--ink-soft)">Le dossier que vous cherchez n'existe pas, ou il a été classé ailleurs. Pas de panique — le seul vrai symptôme ici, c'est la faim. On sait la soigner.</p>
         <div class="btn-row" style="justify-content:center;margin-top:2rem">
-          <a class="btn btn--gold" href="index.html"><span>Retour à l'accueil</span></a>
-          <a class="btn btn--ghost-light" href="menu.html"><span>Voir le menu</span></a>
+          <a class="btn btn--gold" href="https://www.ubereats.com/fr/store/dr-wings-franconville/v0p42CWaU-2kR9s5SoUDvw" target="_blank" rel="noopener">
+            <span>Commander des wings</span>
+            <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+          </a>
+          <a class="btn btn--ghost" href="index.html"><span>Retour à l'accueil</span></a>
         </div>
       </div>
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

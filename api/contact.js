@@ -2,8 +2,8 @@
 
 const https = require("https");
 
-const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "gestion@kayani.kitchen";
-const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Kayani Kitchen <contact@kayani.kitchen>";
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "contact@dr-wings.com";
+const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Dr Wings <contact@dr-wings.com>";
 
 function sendJson(res, status, payload) {
   res.writeHead(status, {
@@ -49,9 +49,9 @@ function sendContactEmail(payload, callback) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return callback(new Error("mail_not_configured"));
 
-  const subject = "[Site Kayani] " + payload.sujet + " - " + payload.nom;
+  const subject = "[Site Dr Wings] " + payload.sujet + " - " + payload.nom;
   const text = [
-    "Nouvelle demande depuis le site Kayani Kitchen",
+    "Nouvelle demande depuis le site Dr Wings",
     "",
     "Sujet : " + payload.sujet,
     "Nom : " + payload.nom,
@@ -61,7 +61,7 @@ function sendContactEmail(payload, callback) {
     payload.message
   ].filter(Boolean).join("\n");
   const html = [
-    "<h2>Nouvelle demande depuis le site Kayani Kitchen</h2>",
+    "<h2>Nouvelle demande depuis le site Dr Wings</h2>",
     "<p><strong>Sujet :</strong> " + escapeHtml(payload.sujet) + "</p>",
     "<p><strong>Nom :</strong> " + escapeHtml(payload.nom) + "</p>",
     "<p><strong>Email :</strong> " + escapeHtml(payload.email) + "</p>",
@@ -86,7 +86,7 @@ function sendContactEmail(payload, callback) {
     headers: {
       "Authorization": "Bearer " + apiKey,
       "Content-Type": "application/json",
-      "User-Agent": "kayani-kitchen-site/1.0",
+      "User-Agent": "dr-wings-site/1.0",
       "Content-Length": Buffer.byteLength(body)
     }
   }, function (apiRes) {

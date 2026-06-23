@@ -1,81 +1,93 @@
-# Kayani Kitchen — Site vitrine
+# Dr Wings — Site vitrine
 
-Site vitrine premium pour **Kayani Kitchen**, restaurant de cuisine
-**indo-pakistanaise** (halal, fait maison) à **Sannois (95)**.
-Livraison & à emporter. Site **statique** (HTML/CSS/JS), sans build ni base de données.
+Site vitrine premium pour **Dr Wings**, la « clinique du poulet » à **Franconville (95)**.
+Spécialité : chicken wings, tenders, sauces signatures. **Livraison uniquement** via Uber Eats.
 
-## Lancer en local
+Direction artistique : carrelage clinique blanc + blush, barquettes kraft, encre brune, mascotte
+poulet-à-lunettes. Ton « médecin fou de wings » — ordonnances, posologie, prescriptions.
 
-```bash
-npm run dev
-# → http://localhost:3000
-```
+---
 
-Alternative sans Node :
+## Stack
 
-```bash
-python -m http.server 3000
-```
+Site **statique** (HTML/CSS/JS vanilla), zéro build, pensé pour la performance et un déploiement
+Vercel instantané. Pas de framework : contrôle total du design, LCP minimal, aucune dépendance front
+à installer.
 
-> Ouvrir directement les fichiers en `file://` fonctionne aussi, mais un petit
-> serveur statique est recommandé (chemins relatifs, polices, iframe carte).
+- **Animations on-scroll** : IntersectionObserver (reveals) + [Lenis](https://github.com/darkroomengineering/lenis) (smooth scroll), via CDN.
+- **Typographie** : Bricolage Grotesque (display) · Caveat (manuscrit « ordonnance ») · Hanken Grotesk (texte) · mono système (données cliniques).
+- **Formulaire de contact** : fonction serverless `api/contact.js` (Resend) + repli Instagram.
+
+### Palette de marque
+
+| Rôle | Couleur |
+|------|---------|
+| Brun espresso (encre, texte, fonds sombres) | `#5C3A2E` |
+| Blush (sections alternées) | `#FFE3DF` |
+| Blush soutenu (accents, puces) | `#FCCCC8` |
+| Blanc (canevas) | `#FFFFFF` |
+| Terracotta « épice » (accent fonctionnel) | dérivée — `#D2603F` |
+
+Tout est piloté par des CSS custom properties dans `assets/css/style.css` (`:root`).
+
+---
 
 ## Structure
 
 ```
-index.html              Accueil (hero, histoire, spécialités, commander, avis)
-menu.html               Menu complet (rendu dynamique + filtres)
-notre-histoire.html     Storytelling de la marque
-contact.html            Formulaire QCM + FAQ + infos
-nous-trouver.html       Carte, horaires, zones de livraison
-404.html                Page d'erreur
-assets/css/style.css    Design system (tokens, composants, animations)
-assets/js/main.js       Nav, smooth scroll, reveals on-scroll, compteurs, marquee
-assets/js/menu-data.js  Données du menu (catégories, plats, prix, tags, images)
-assets/js/menu.js       Rendu de la page menu + filtres + scrollspy
-images/                 Logos, visuels d'ambiance et photos de plats
+index.html               Accueil (hero clinique, ordonnances signature, protocole)
+menu.html                La carte (« l'ordonnance », filtres + posologie)
+notre-histoire.html      La clinique (concept, méthode, serment)
+nous-trouver.html        Franconville + zone de livraison
+contact.html             Formulaire + FAQ
+404.html                 Page « patient introuvable »
+mentions-legales.html    /  politique-confidentialite.html
+assets/css/style.css     Design system + composants
+assets/js/main.js        Nav, reveals, smooth scroll, marquee, FAQ
+assets/js/menu-data.js   Données du menu (source : Uber Eats Franconville)
+assets/js/menu.js        Rendu de la carte + filtres + scrollspy
+api/contact.js           Fonction serverless (envoi via Resend)
+images/                  Logo, illustrations, visuels
 ```
 
-## Modifier le contenu
+---
 
-- **Le menu** : `assets/js/menu-data.js`. Chaque plat =
-  `{ nom, prix, desc, img, tags }`.
-  - `img` = nom de fichier exact dans `/images` (les espaces/accents/emojis sont
-    gérés automatiquement à l'affichage). Si l'image est absente, une vignette de
-    marque s'affiche à la place.
-  - `tags` : `star` (best-seller), `heat` (épicé), `veg` (végétarien), `new` (nouveau).
-- **Coordonnées, horaires, liens de commande** : présents dans le `<footer>` et les
-  pages `contact.html` / `nous-trouver.html` (rechercher le numéro ou l'adresse).
-- **Spécialités de l'accueil** : section « Nos spécialités signatures » dans
-  `index.html`.
+## Développement
 
-## Identité de marque
+```bash
+npm install        # @vercel/analytics uniquement (optionnel)
+npm run dev        # serveur local sur http://localhost:3000 (sert le statique + /api/contact)
+```
 
-- Couleurs : noir `#010101`, or `#cfa264`, fond clair (ivoire). Variables dans
-  `:root` de `style.css`.
-- Polices : Fraunces (titres) + Hanken Grotesk (texte), via Google Fonts.
-- Logo : `images/logo kayani kitchen fond transparent.png`.
+> Le serveur de dev (`server.js`) est local uniquement. En production, Vercel sert les fichiers
+> statiques et exécute `api/contact.js` comme fonction serverless.
 
-## ⚠️ À confirmer avant mise en production
+---
 
-Ces données proviennent de sources publiques (site officiel, TripAdvisor) et
-doivent être validées par le restaurant :
+## Déploiement (Vercel)
 
-- **Adresse** : « 68 Rue du Poirier Baron, 95110 Sannois » (variante vue :
-  « Place du Poirier Baron »).
-- **Téléphone** : 01 80 87 41 40 — **WhatsApp** +33 6 63 29 78 91 (autre listing :
-  +33 6 36 06 22 21).
-- **Email** : gestion@kayani.kitchen.
-- **Horaires** : Lun/Jeu/Ven/Sam/Dim 11h30–14h15 & 18h00–23h00 ; Mar/Mer soir uniquement.
-- **Coordonnées GPS** du JSON-LD (`index.html`) : approximatives (centre de Sannois).
-- **Prix du menu** : estimations réalistes — à aligner sur Uber Eats / dood.
-- **Avis clients** : 2 sont repris de TripAdvisor ; remplacer les autres par de
-  vrais avis Google/TripAdvisor (verbatim). Ne jamais afficher le nombre total d'avis.
-- **Liens légaux** (mentions légales, confidentialité) : pages à créer.
-- **Histoire** : rédigée de façon factuelle/évocatrice, sans inventer de fondateurs.
-  À enrichir avec le vrai récit du restaurant.
+1. Connecter le dépôt à Vercel (framework : *Other*, output : racine — déjà dans `vercel.json`).
+2. Définir les variables d'environnement (onglet *Settings → Environment Variables*) :
+   - `RESEND_API_KEY` — clé API [Resend](https://resend.com) (sinon le formulaire renvoie « non configuré » proprement).
+   - `CONTACT_TO_EMAIL` — adresse de réception.
+   - `CONTACT_FROM_EMAIL` — expéditeur vérifié sur Resend.
+3. `vercel.json` configure : `cleanUrls`, en-têtes de sécurité (CSP, HSTS, X-Frame-Options…), cache des assets.
+4. `.vercelignore` exclut du déploiement les résidus et notes internes.
 
-## Pistes d'évolution (hors v0)
+---
 
-Commande en ligne intégrée, réservation, multilingue, blog, optimisation/rognage
-des photos de plats, migration vers un CMS (ex. Astro/Next.js) si besoin.
+## À compléter par l'exploitant
+
+Ces éléments nécessitent des informations réelles que le site signale sans les inventer :
+
+- **Mentions légales** : raison sociale, SIRET, directeur de publication (`mentions-legales.html`).
+- **Email de contact** : configurer `CONTACT_TO_EMAIL` / `RESEND_API_KEY`.
+- **Horaires** : affichés en temps réel via Uber Eats (pas de tableau figé).
+- **Prix / disponibilité** : la source de vérité reste la fiche Uber Eats.
+
+---
+
+## Liens
+
+- Commander : [Uber Eats — Dr Wings Franconville](https://www.ubereats.com/fr/store/dr-wings-franconville/v0p42CWaU-2kR9s5SoUDvw)
+- Instagram : [@doctor.wings](https://www.instagram.com/doctor.wings/)

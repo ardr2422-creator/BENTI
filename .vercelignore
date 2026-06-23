@@ -1,0 +1,21 @@
+# Dépendances (Vercel les réinstalle au build)
+node_modules
+
+# Résidus d'anciens projets — NE PAS déployer (contenu sans rapport avec Dr Wings)
+public
+src
+
+# Outils & serveur de dev local (non utilisés en production Vercel)
+server.js
+start-server-hidden.vbs
+tools
+
+# Notes internes de marque — ne doivent pas être servies publiquement
+images/*.txt
+images/desktop.ini
+images/illustration/desktop.ini
+
+# Divers
+.env
+README.md
+skills-lock.json

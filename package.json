@@ -1,7 +1,7 @@
 {
-  "name": "kayani-kitchen",
-  "version": "0.1.0",
-  "description": "Site vitrine premium — Kayani Kitchen, cuisine indo-pakistanaise (Sannois, 95). Site statique (HTML/CSS/JS), sans base de données.",
+  "name": "dr-wings",
+  "version": "1.0.0",
+  "description": "Site vitrine premium — Dr Wings, la clinique du poulet à Franconville (95). Chicken wings, livraison Uber Eats. Site statique (HTML/CSS/JS), sans base de données.",
   "private": true,
   "scripts": {
     "dev": "node server.js",
@@ -10,11 +10,15 @@
     "autostart:uninstall": "powershell -NoProfile -ExecutionPolicy RemoteSigned -File tools/uninstall-autostart.ps1"
   },
   "keywords": [
-    "kayani-kitchen",
+    "dr-wings",
+    "chicken-wings",
     "restaurant",
-    "indo-pakistanais",
     "site-vitrine",
-    "sannois"
+    "franconville",
+    "uber-eats"
   ],
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
 }
