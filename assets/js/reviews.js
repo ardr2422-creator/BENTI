@@ -69,8 +69,6 @@
     });
   });
 
-  /* Swipe tactile : un seul avis par geste, et seulement si le geste est
-     clairement horizontal (sinon on laisse la page défiler verticalement). */
   var tStartX = null, tStartY = null, swiping = false;
   carousel.addEventListener("touchstart", function (e) {
     tStartX = e.touches[0].clientX;

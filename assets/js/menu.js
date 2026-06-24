@@ -34,16 +34,22 @@
 
     var flag = item.flag ? '<span aria-hidden="true">' + item.flag + "</span> " : "";
 
+    var media = item.img
+      ? '<div class="rx-line__media"><img src="' + item.img + '" alt="" loading="lazy" decoding="async" /></div>'
+      : "";
+
     el.innerHTML =
-      '<div class="rx-line__top">' +
-        '<h3 class="rx-line__name">' + flag + esc(item.nom) + "</h3>" +
-      "</div>" +
-      (item.desc ? '<p class="rx-line__desc">' + esc(item.desc) + "</p>" : "") +
-      '<div class="rx-line__meta">' + meta + "</div>";
+      media +
+      '<div class="rx-line__body">' +
+        '<div class="rx-line__top">' +
+          '<h3 class="rx-line__name">' + flag + esc(item.nom) + "</h3>" +
+        "</div>" +
+        (item.desc ? '<p class="rx-line__desc">' + esc(item.desc) + "</p>" : "") +
+        '<div class="rx-line__meta">' + meta + "</div>" +
+      "</div>";
     return el;
   }
 
-  // --- Rendu des catégories (ordonnances) ---
   DATA.forEach(function (cat) {
     var section = document.createElement("section");
     section.className = "rx-sheet reveal";
@@ -67,7 +73,6 @@
     root.appendChild(section);
   });
 
-  // --- Navigation de catégories ---
   if (navRoot) {
     DATA.forEach(function (cat) {
       var btn = document.createElement("a");
@@ -78,7 +83,6 @@
     });
   }
 
-  // --- Scrollspy : surligne la catégorie active dans la nav ---
   if (navRoot && "IntersectionObserver" in window) {
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

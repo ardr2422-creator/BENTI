@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nos cliniques — Dr Wings | Franconville &amp; Bordeaux, livraison Uber Eats</title>
-  <meta name="description" content="Dr Wings à Franconville (95130) et Bordeaux Chartrons. Livraison uniquement via Uber Eats. Pas de salle d'attente, pas de comptoir — vos wings arrivent chez vous." />
+  <title>Nos cliniques · Dr Wings | 13 antennes en France, livraison Uber Eats</title>
+  <meta name="description" content="Treize cliniques Dr Wings de Calais à Marseille. Choisissez votre ville pour l'adresse exacte, les horaires et le lien Uber Eats. Livraison uniquement, directement chez vous." />
   <link rel="canonical" href="https://dr-wings.com/nous-trouver.html" />
-  <meta property="og:title" content="Nos cliniques — Dr Wings | Franconville &amp; Bordeaux" />
-  <meta property="og:description" content="Deux adresses. Un seul traitement. Livraison uniquement via Uber Eats." />
-  <meta property="og:image" content="https://dr-wings.com/images/illustration/poster-flavors.jpeg" />
+  <meta property="og:title" content="Nos cliniques · Dr Wings | 13 antennes en France" />
+  <meta property="og:description" content="Treize cliniques partout en France. Trouvez la vôtre. Livraison uniquement via Uber Eats." />
+  <meta property="og:image" content="https://dr-wings.com/images/illustration/livraison-boxes.png" />
   <meta property="og:locale" content="fr_FR" />
   <meta name="theme-color" content="#ffe3df" />
   <link rel="icon" type="image/png" href="images/logo-dr-wings.png" />
@@ -24,7 +24,7 @@
 
   <header>
     <nav class="site-nav" aria-label="Navigation principale">
-      <a class="nav-logo" href="index.html" aria-label="Dr Wings — accueil">
+      <a class="nav-logo" href="index.html" aria-label="Dr Wings, accueil">
         <img src="images/logo-dr-wings.png" alt="Dr Wings" width="160" height="64" />
       </a>
       <div class="nav-links">
@@ -77,153 +77,32 @@
         <nav class="breadcrumb" aria-label="Fil d'ariane">
           <a href="index.html">Accueil</a> <span aria-hidden="true">/</span> <span>Nos cliniques</span>
         </nav>
-        <p class="eyebrow reveal">Nos cliniques</p>
-        <h1 class="reveal">Deux adresses. <em>Un seul traitement.</em></h1>
-        <p class="lead reveal measure">Pas de salle d'attente, pas de comptoir. Dr&nbsp;Wings soigne en livraison uniquement, via Uber&nbsp;Eats, directement chez vous.</p>
+        <p class="eyebrow reveal">Le réseau Dr Wings</p>
+        <h1 class="reveal">Dr Wings ausculte <em>toute la France.</em></h1>
+        <p class="lead reveal measure">De Calais à Marseille, treize antennes prennent vos commandes et les envoient en livraison via Uber&nbsp;Eats. Trouvez la vôtre.</p>
       </div>
     </section>
 
-    <section class="section section--cream">
+    <section class="section section--cream" id="loc-finder">
       <div class="container">
-        <!-- Sélecteur de clinique -->
-        <div class="loc-tabs" role="tablist" aria-label="Choisir une clinique">
-          <button class="loc-tab is-active" data-target="loc-franconville" role="tab" aria-selected="true" aria-controls="loc-franconville">
-            <span class="loc-tab__city">Franconville</span>
-            <span class="loc-tab__region">Val-d'Oise (95)</span>
-          </button>
-          <button class="loc-tab" data-target="loc-bordeaux" role="tab" aria-selected="false" aria-controls="loc-bordeaux">
-            <span class="loc-tab__city">Bordeaux</span>
-            <span class="loc-tab__region">Chartrons (33)</span>
-          </button>
+        <div class="loc-finder reveal">
+          <div class="loc-finder__head">
+            <p class="eyebrow">Localiser une antenne</p>
+            <h2>Treize cliniques. <em>Une près de vous.</em></h2>
+            <p class="loc-finder__lead measure">Choisissez votre ville. On affiche l'adresse exacte, les horaires et le lien pour commander. Tout part en livraison via Uber&nbsp;Eats.</p>
+          </div>
+          <div class="loc-finder__control">
+            <label class="loc-field" for="loc-select">
+              <span class="loc-field__label">Votre ville</span>
+              <select id="loc-select" class="loc-select">
+                <option value="">Sélectionnez votre ville…</option>
+              </select>
+            </label>
+          </div>
+          <div class="loc-chips" id="loc-chips" aria-label="Toutes les cliniques"></div>
         </div>
 
-        <!-- Clinique Franconville -->
-        <div class="loc-panel" id="loc-franconville" role="tabpanel">
-          <div class="location-top">
-            <div data-stagger>
-              <p class="eyebrow reveal">Clinique Franconville</p>
-              <h2 class="reveal" style="margin-bottom:1.5rem">Dr Wings — Val-d'Oise</h2>
-              <div class="info-list">
-                <div class="info-item reveal">
-                  <span class="info-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                  <div>
-                    <h4>Adresse</h4>
-                    <p>Franconville, 95130 — Val-d'Oise</p>
-                    <a class="link-quiet" href="https://www.google.com/maps/search/Dr+Wings+Franconville+95130" target="_blank" rel="noopener">Voir sur Google Maps →</a>
-                  </div>
-                </div>
-                <div class="info-item reveal">
-                  <span class="info-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-                  <div>
-                    <h4>Horaires</h4>
-                    <table class="hours-table">
-                      <tbody>
-                        <tr>
-                          <td>Lun — Ven</td>
-                          <td>12h – 14h30 &nbsp;&amp;&nbsp; 19h – 22h</td>
-                        </tr>
-                        <tr>
-                          <td>Sam — Dim</td>
-                          <td>12h – 22h en continu</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="info-item reveal">
-                  <span class="info-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L23 6H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></span>
-                  <div>
-                    <h4>Mode de prise en charge</h4>
-                    <p>Livraison uniquement, via Uber&nbsp;Eats. Ni sur place, ni à emporter au comptoir.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="btn-row" style="margin-top:2rem">
-                <a class="btn btn--gold" href="https://www.ubereats.com/fr/store/dr-wings-franconville/v0p42CWaU-2kR9s5SoUDvw" target="_blank" rel="noopener">
-                  <span>Commander — Franconville</span>
-                  <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-                </a>
-              </div>
-            </div>
-            <div class="reveal">
-              <div class="map-embed">
-                <iframe
-                  title="Carte — Dr Wings, Franconville (Val-d'Oise)"
-                  src="https://www.google.com/maps?q=Dr+Wings+Franconville+95130&output=embed"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-              <div class="btn-row" style="margin-top:1.2rem">
-                <a class="btn btn--outline" href="https://www.google.com/maps/search/Dr+Wings+Franconville+95130" target="_blank" rel="noopener">
-                  <span>Ouvrir dans Google Maps</span>
-                  <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Clinique Bordeaux -->
-        <div class="loc-panel is-hidden" id="loc-bordeaux" role="tabpanel" aria-hidden="true">
-          <div class="location-top">
-            <div data-stagger>
-              <p class="eyebrow reveal">Clinique Bordeaux</p>
-              <h2 class="reveal" style="margin-bottom:1.5rem">Dr Wings — Chartrons</h2>
-              <div class="info-list">
-                <div class="info-item reveal">
-                  <span class="info-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                  <div>
-                    <h4>Adresse</h4>
-                    <p>4 Rue des Frères Portmann, 33300 Bordeaux</p>
-                    <a class="link-quiet" href="https://www.google.com/maps/search/4+Rue+des+Frères+Portmann+33300+Bordeaux" target="_blank" rel="noopener">Voir sur Google Maps →</a>
-                  </div>
-                </div>
-                <div class="info-item reveal">
-                  <span class="info-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-                  <div>
-                    <h4>Horaires</h4>
-                    <table class="hours-table">
-                      <tbody>
-                        <tr>
-                          <td>Tous les jours</td>
-                          <td>11h – 23h en continu</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="info-item reveal">
-                  <span class="info-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L23 6H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></span>
-                  <div>
-                    <h4>Mode de prise en charge</h4>
-                    <p>Livraison uniquement, via Uber&nbsp;Eats. Ni sur place, ni à emporter au comptoir.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="btn-row" style="margin-top:2rem">
-                <a class="btn btn--gold" href="https://www.ubereats.com/fr/store/dr-wings-bordeaux-chartrons/bbcpgSVOWPm8s-LtDvh50Q" target="_blank" rel="noopener">
-                  <span>Commander — Bordeaux</span>
-                  <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-                </a>
-              </div>
-            </div>
-            <div class="reveal">
-              <div class="map-embed">
-                <iframe
-                  title="Carte — Dr Wings, Bordeaux Chartrons"
-                  src="https://www.google.com/maps?q=4+Rue+des+Frères+Portmann+33300+Bordeaux&output=embed"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-              <div class="btn-row" style="margin-top:1.2rem">
-                <a class="btn btn--outline" href="https://www.google.com/maps/search/4+Rue+des+Frères+Portmann+33300+Bordeaux" target="_blank" rel="noopener">
-                  <span>Ouvrir dans Google Maps</span>
-                  <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="loc-result" id="loc-result" aria-live="polite"></div>
       </div>
     </section>
 
@@ -231,14 +110,14 @@
       <div class="container text-center" data-stagger>
         <p class="eyebrow eyebrow--light reveal" style="justify-content:center">Sans rendez-vous</p>
         <h2 class="reveal">Votre adresse est dans la zone&nbsp;?<br /><span class="marker text-gold">Votre ordonnance vous attend.</span></h2>
-        <p class="lead reveal" style="margin-inline:auto;margin-top:1rem;color:var(--on-dark-soft)">Saisissez votre adresse sur Uber&nbsp;Eats — si vous êtes dans le périmètre, la clinique la plus proche prend votre commande.</p>
+        <p class="lead reveal" style="margin-inline:auto;margin-top:1rem;color:var(--on-dark-soft)">Saisissez votre adresse sur Uber&nbsp;Eats. Si une clinique Dr&nbsp;Wings couvre votre quartier, elle prend la commande et vous livre.</p>
         <div class="btn-row reveal" style="justify-content:center;margin-top:1.6rem">
-          <a class="btn btn--gold" href="https://www.ubereats.com/fr/store/dr-wings-franconville/v0p42CWaU-2kR9s5SoUDvw" target="_blank" rel="noopener">
-            <span>Commander — Franconville</span>
+          <a class="btn btn--gold" href="https://www.ubereats.com/fr/search?q=Dr%20Wings" target="_blank" rel="noopener">
+            <span>Commander sur Uber Eats</span>
             <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
           </a>
-          <a class="btn btn--ghost-light" href="https://www.ubereats.com/fr/store/dr-wings-bordeaux-chartrons/bbcpgSVOWPm8s-LtDvh50Q" target="_blank" rel="noopener">
-            <span>Commander — Bordeaux</span>
+          <a class="btn btn--ghost-light" href="#loc-finder">
+            <span>Choisir ma ville</span>
           </a>
         </div>
       </div>
@@ -248,9 +127,12 @@
   <div class="marquee marquee--footer" aria-hidden="true">
     <div class="marquee__track">
       <span class="marquee__item">Franconville</span>
+      <span class="marquee__item">Marseille</span>
+      <span class="marquee__item">Bordeaux</span>
+      <span class="marquee__item">Nancy</span>
+      <span class="marquee__item">Le Mans</span>
+      <span class="marquee__item">Calais</span>
       <span class="marquee__item">Livré par Uber Eats</span>
-      <span class="marquee__item">Bordeaux Chartrons</span>
-      <span class="marquee__item">Sans rendez-vous</span>
       <span class="marquee__item">Livraison uniquement</span>
     </div>
   </div>
@@ -263,7 +145,6 @@
           <p>La clinique du poulet. Wings coréennes, tenders et sauces signatures, sur ordonnance et livrés par Uber&nbsp;Eats.</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/doctor.wings/" target="_blank" rel="noopener" aria-label="Instagram @doctor.wings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="https://www.ubereats.com/fr/store/dr-wings-franconville/v0p42CWaU-2kR9s5SoUDvw" target="_blank" rel="noopener" aria-label="Commander sur Uber Eats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L23 6H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></a>
           </div>
         </div>
         <div class="footer-col">
@@ -279,8 +160,8 @@
         <div class="footer-col">
           <h5>Commander</h5>
           <ul>
-            <li><a href="https://www.ubereats.com/fr/store/dr-wings-franconville/v0p42CWaU-2kR9s5SoUDvw" target="_blank" rel="noopener">Uber Eats — Franconville</a></li>
-            <li><a href="https://www.ubereats.com/fr/store/dr-wings-bordeaux-chartrons/bbcpgSVOWPm8s-LtDvh50Q" target="_blank" rel="noopener">Uber Eats — Bordeaux</a></li>
+            <li><a href="https://www.ubereats.com/fr/search?q=Dr%20Wings" target="_blank" rel="noopener">Uber Eats</a></li>
+            <li><a href="nous-trouver.html">Trouver ma clinique</a></li>
             <li><a href="menu.html">Voir la carte</a></li>
           </ul>
         </div>
@@ -303,32 +184,8 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="assets/js/locations-data.js"></script>
+  <script src="assets/js/locator.js"></script>
   <script src="assets/js/main.js"></script>
-  <script>
-    (function () {
-      var tabs = document.querySelectorAll(".loc-tab");
-      var panels = document.querySelectorAll(".loc-panel");
-      tabs.forEach(function (tab) {
-        tab.addEventListener("click", function () {
-          var target = tab.getAttribute("data-target");
-          tabs.forEach(function (t) {
-            t.classList.remove("is-active");
-            t.setAttribute("aria-selected", "false");
-          });
-          panels.forEach(function (p) {
-            p.classList.add("is-hidden");
-            p.setAttribute("aria-hidden", "true");
-          });
-          tab.classList.add("is-active");
-          tab.setAttribute("aria-selected", "true");
-          var panel = document.getElementById(target);
-          if (panel) {
-            panel.classList.remove("is-hidden");
-            panel.removeAttribute("aria-hidden");
-          }
-        });
-      });
-    })();
-  </script>
 </body>
 </html>

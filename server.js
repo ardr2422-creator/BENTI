@@ -8,7 +8,7 @@ const path = require("path");
 const ROOT = path.resolve(__dirname);
 loadEnvFile(ROOT);
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || "127.0.0.1"; // localhost uniquement (non exposé au réseau)
+const HOST = process.env.HOST || "127.0.0.1";
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "contact@dr-wings.com";
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Dr Wings <contact@dr-wings.com>";
 
@@ -194,7 +194,6 @@ const server = http.createServer(function (req, res) {
   if (urlPath === "/") urlPath = "/index.html";
   if (urlPath === "/api/contact") return handleContact(req, res);
 
-  // Résolution sûre (empêche la traversée de répertoire)
   const filePath = path.normalize(path.join(ROOT, urlPath));
   if (filePath !== ROOT && !filePath.startsWith(ROOT + path.sep)) {
     return send(res, 403, "403 Forbidden");

@@ -52,7 +52,6 @@
     document.documentElement.classList.add("lenis");
   }
 
-  /* Liens d'ancrage internes : scroll fluide + fermeture du menu */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     var id = link.getAttribute("href");
     if (id.length < 2) return;
@@ -101,7 +100,7 @@
     function tick(ts) {
       if (start === null) start = ts;
       var p = Math.min((ts - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      var eased = 1 - Math.pow(1 - p, 3);
       var val = (target * eased).toFixed(decimals).replace(".", ",");
       el.textContent = val + suffix;
       if (p < 1) requestAnimationFrame(tick);
@@ -138,8 +137,6 @@
     });
   });
 
-  /* Parallaxe désactivée sur mobile/tactile : un transform recalculé à chaque scroll
-     sur une grande image saccade les petits téléphones. On garde le léger zoom CSS. */
   var allowParallax = !prefersReduced &&
     window.matchMedia("(min-width: 861px) and (pointer: fine)").matches;
   if (allowParallax) {
@@ -161,7 +158,39 @@
     }
   }
 
-  /* Fluidité : décodage asynchrone de toutes les images (évite les à-coups au scroll) */
+  function initCoverflow(scroller) {
+    var cards = Array.prototype.slice.call(scroller.children);
+    if (!cards.length) return;
+    var pending = false;
+    function update() {
+      pending = false;
+      if (scroller.scrollWidth <= scroller.clientWidth + 4) {
+        cards.forEach(function (c) { c.classList.remove("is-active"); });
+        return;
+      }
+      var box = scroller.getBoundingClientRect();
+      var mid = box.left + box.width / 2;
+      var best = null, bestDist = Infinity;
+      cards.forEach(function (card) {
+        var r = card.getBoundingClientRect();
+        var d = Math.abs(r.left + r.width / 2 - mid);
+        if (d < bestDist) { bestDist = d; best = card; }
+      });
+      cards.forEach(function (card) {
+        card.classList.toggle("is-active", card === best);
+      });
+    }
+    function queue() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(update);
+    }
+    scroller.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue, { passive: true });
+    update();
+  }
+  document.querySelectorAll("[data-coverflow]").forEach(initCoverflow);
+
   document.querySelectorAll("img:not([decoding])").forEach(function (img) {
     img.decoding = "async";
   });
