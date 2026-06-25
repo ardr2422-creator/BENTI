@@ -92,7 +92,7 @@ html.lenis body { height: auto; }
 body {
   font-family: var(--font-sans);
   font-size: var(--step-0);
-  line-height: 1.65;
+  line-height: 1.55;
   color: var(--ink);
   background: var(--shell);
   font-weight: 400;
@@ -1082,13 +1082,12 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translate(-50%, -50%) r
 .site-footer { background: var(--espresso); color: var(--on-dark); padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem) 2.5rem; }
 .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: clamp(2rem, 1rem + 3vw, 4rem); }
 .footer-brand img {
-  height: clamp(3.2rem, 2.6rem + 1.6vw, 4.8rem);
+  height: clamp(4rem, 3rem + 2vw, 5.4rem);
   width: auto;
-  max-width: min(100%, 15rem);
   object-fit: contain;
   margin-bottom: 1.4rem;
-  filter: brightness(0) invert(1);
-  opacity: 0.95;
+  border-radius: 50%;
+  box-shadow: 0 12px 30px -14px rgba(0, 0, 0, 0.5);
 }
 .footer-brand p { color: var(--on-dark-soft); max-width: 34ch; font-size: var(--step--1); }
 .footer-col h5 {
@@ -1182,6 +1181,9 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translate(-50%, -50%) r
   .nav-links, .nav-cta .btn span:not(.btn__icon) { display: none; }
   .nav-cta .btn { display: none; }
   .nav-toggle { display: block; }
+  .site-nav { gap: 0.5rem; padding-right: 0.7rem; }
+  .nav-logo { margin-right: auto; }
+  .nav-cta { margin: 0; }
   .split { grid-template-columns: 1fr; }
   .split--reverse .split__media { order: 0; }
   .split__media { aspect-ratio: 16 / 11; }
@@ -1701,13 +1703,14 @@ body.nav-open .nav-overlay__cta { opacity: 1; transform: none; }
 
 .hero-clinic__media { position: relative; isolation: isolate; }
 .hero-clinic__media > img {
+  display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 7 / 5;
   object-fit: cover;
-  object-position: center top;
-  border-radius: var(--r-xl);
-  box-shadow: var(--shadow-lg);
+  object-position: center;
+  border-radius: var(--r-lg);
+  box-shadow: 0 30px 60px -34px rgba(73, 30, 18, 0.42);
   background: var(--blush);
 }
 .rx-sticker {
@@ -2174,4 +2177,43 @@ body.nav-open .nav-overlay__cta { opacity: 1; transform: none; }
   .toast,
   .cart-btn__badge { transition-duration: 1ms; }
   .cart-btn.is-bump { animation: none; }
+}
+
+/* ========================================================================
+   CORRECTIONS — lisibilité, responsive, mobile
+   ===================================================================== */
+
+/* Lignes de formulaire à deux colonnes, repliées sur mobile */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+@media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+
+/* Récap commande : aucun débordement horizontal */
+.checkout, .checkout__main, .checkout__aside, .order-summary { min-width: 0; }
+.checkout__aside, .order-summary { max-width: 100%; }
+.summary-line__name { overflow-wrap: anywhere; }
+.form, .field, .field input, .field select, .field textarea { max-width: 100%; }
+
+/* Filtres de la carte : collés sous la nav, avec de l'air avant la grille */
+.menu-nav { margin-top: 0.4rem; }
+
+@media (max-width: 640px) {
+  /* Pas de liens soulignés sur mobile : on garde les boutons */
+  .link-quiet { border-bottom: none; padding-bottom: 0; }
+  /* Bannière défilante : taille maîtrisée sur petit écran */
+  .marquee { padding-block: 0.85rem; }
+  .marquee__item { font-size: clamp(1.25rem, 0.9rem + 3.6vw, 2rem); gap: 1.4rem; margin-inline-end: 1.4rem; }
+  .marquee--footer .marquee__item::after,
+  .marquee__item::after { font-size: 0.6em; }
+}
+
+/* Sliders horizontaux mobile : arrêt net, une carte à la fois */
+@media (max-width: 640px) {
+  .dish-grid, .specials, .steps, .badges-slider { scroll-padding-inline: var(--gutter); }
+  .dish-grid .dish,
+  .specials .special,
+  .steps .step,
+  .badges-slider .card {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }

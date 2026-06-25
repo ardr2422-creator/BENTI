@@ -103,7 +103,7 @@
                 <input id="f-nom" name="nom" type="text" autocomplete="name" required maxlength="120" placeholder="Camille Durand" />
                 <span class="field__error" role="alert">Indiquez votre nom.</span>
               </div>
-              <div class="grid" style="grid-template-columns:1fr 1fr;gap:1.4rem">
+              <div class="field-row">
                 <div class="field" data-field="tel">
                   <label for="f-tel">Téléphone</label>
                   <input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40" placeholder="06 12 34 56 78" />
@@ -122,7 +122,7 @@
                 <input id="f-adresse" name="adresse" type="text" autocomplete="street-address" required maxlength="200" placeholder="12 rue des Lilas, bâtiment B, 3e étage" />
                 <span class="field__error" role="alert">Indiquez votre adresse complète.</span>
               </div>
-              <div class="grid" style="grid-template-columns:1fr 1.6fr;gap:1.4rem">
+              <div class="field-row">
                 <div class="field" data-field="codePostal">
                   <label for="f-cp">Code postal</label>
                   <input id="f-cp" name="codePostal" type="text" inputmode="numeric" autocomplete="postal-code" required maxlength="10" placeholder="75015" />
@@ -169,17 +169,14 @@
                 <span>Total</span>
                 <strong id="summary-total">0,00 €</strong>
               </div>
-              <p class="menu-note" style="margin-top:0.9rem">Hors frais de livraison éventuels, calculés selon le magasin le plus proche.</p>
-              <div class="btn-row" style="margin-top:1.1rem">
-                <a class="link-quiet" href="menu.html">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1rem;height:1rem"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-                  Modifier la carte
-                </a>
-              </div>
+              <p class="menu-note" style="margin-top:0.9rem">Hors frais de livraison éventuels, calculés selon la cuisine la plus proche.</p>
+              <a class="btn btn--ghost" href="menu.html" style="width:100%;justify-content:center;margin-top:1.1rem">
+                <span>Modifier la carte</span>
+              </a>
             </div>
-            <p class="menu-note text-center" style="margin-top:1rem">Vous préférez Uber Eats&nbsp;?
-              <a class="link-quiet" href="https://www.ubereats.com/fr/store/cest-mon-dessert/oUGzjJaMVGSAT-oWrFMP5w" target="_blank" rel="noopener" style="display:inline-flex">Commander là-bas</a>
-            </p>
+            <a class="btn btn--ghost" href="https://www.ubereats.com/fr/store/cest-mon-dessert/oUGzjJaMVGSAT-oWrFMP5w" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-top:1rem">
+              <span>Commander sur Uber Eats</span>
+            </a>
           </aside>
         </div>
 

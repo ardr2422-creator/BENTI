@@ -12,3 +12,6 @@ no slop/
 skills-lock.json
 desktop.ini
 **/desktop.ini
+
+# Lien projet Vercel (local)
+.vercel

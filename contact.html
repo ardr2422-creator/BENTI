@@ -28,8 +28,8 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Où livrez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "Partout en Île-de-France, depuis nos 10 magasins répartis dans Paris et la petite et grande couronne." } },
-      { "@type": "Question", "name": "Jusqu'à quelle heure peut-on commander ?", "acceptedAnswer": { "@type": "Answer", "text": "Selon les magasins, du début de soirée jusqu'à 4h30 du matin, tous les jours." } },
+      { "@type": "Question", "name": "Où livrez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "Partout en Île-de-France, depuis nos 10 cuisines réparties dans Paris et la petite et grande couronne." } },
+      { "@type": "Question", "name": "Jusqu'à quelle heure peut-on commander ?", "acceptedAnswer": { "@type": "Answer", "text": "Selon les cuisines, du début de soirée jusqu'à 4h30 du matin, tous les jours." } },
       { "@type": "Question", "name": "Comment se passe le paiement ?", "acceptedAnswer": { "@type": "Answer", "text": "Vous composez votre panier sur le site, vous confirmez par WhatsApp et vous réglez à la livraison. Vous pouvez aussi commander via Uber Eats." } }
     ]
   }
@@ -94,51 +94,16 @@
           <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Contact</span>
         </nav>
         <h1>On vous <em>répond.</em></h1>
-        <p class="lead measure">Les questions qui reviennent le plus, et un formulaire si la vôtre n'y est pas. Le plus rapide reste un message sur Instagram.</p>
+        <p class="lead measure">Une commande spéciale, une question, un retour&nbsp;? Écrivez-nous, on répond vite. Et si c'est une question fréquente, la réponse est sûrement juste en dessous.</p>
       </div>
     </section>
 
     <section class="section section--cream">
-      <div class="container container--narrow">
-        <div class="section-head reveal">
-          <p class="eyebrow">Questions fréquentes</p>
-          <h2>Tout ce qu'on nous demande.</h2>
-        </div>
-        <div class="faq reveal">
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">Où est-ce que vous livrez ?<span class="faq__icon" aria-hidden="true"></span></button>
-            <div class="faq__a"><div><p>Partout en Île-de-France. Dix magasins couvrent Paris, la petite et la grande couronne. Indiquez votre code postal au moment de commander, on rattache votre commande au magasin le plus proche.</p></div></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">Jusqu'à quelle heure puis-je commander ?<span class="faq__icon" aria-hidden="true"></span></button>
-            <div class="faq__a"><div><p>Du début de soirée jusqu'à 4h30 du matin, tous les jours, selon les magasins. La fringale de minuit a son adresse. Les horaires exacts de chaque magasin sont sur la page Nous trouver.</p></div></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">Comment se passe le paiement ?<span class="faq__icon" aria-hidden="true"></span></button>
-            <div class="faq__a"><div><p>Vous composez votre panier sur le site, vous validez par WhatsApp, et vous réglez à la livraison. Pas de paiement en ligne pour l'instant. Vous pouvez aussi commander directement via Uber Eats.</p></div></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">C'est frais, ou préparé à l'avance ?<span class="faq__icon" aria-hidden="true"></span></button>
-            <div class="faq__a"><div><p>Monté minute. Les tiramisus sont assemblés à la commande, les beignets fourrés au moment, le bubble tea préparé sur place. C'est précisément pour ça qu'on livre, et qu'on ne stocke pas.</p></div></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">Et les allergènes ?<span class="faq__icon" aria-hidden="true"></span></button>
-            <div class="faq__a"><div><p>Nos desserts contiennent gluten, lait, fruits à coque et dérivés du soja selon les recettes (Nutella, Bueno, Kinder, spéculoos…). Pour une intolérance précise, indiquez-le dans la note de commande ou écrivez-nous avant, on vous oriente.</p></div></div>
-          </div>
-          <div class="faq__item">
-            <button class="faq__q" aria-expanded="false">Je commande pour un groupe, c'est possible ?<span class="faq__icon" aria-hidden="true"></span></button>
-            <div class="faq__a"><div><p>Bien sûr. Le coffret Allez les Bleus est pensé pour ça, et vous pouvez multiplier les quantités dans le panier. Pour une grosse commande ou un événement, contactez-nous, on s'organise.</p></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--sand">
       <div class="container contact-form-wrap">
         <div class="section-head section-head--center reveal">
           <p class="eyebrow eyebrow--center">Nous écrire</p>
-          <h2>Votre question n'y est pas&nbsp;?</h2>
-          <p class="lead measure" style="text-align:center">Laissez-nous un message. Pour une réponse immédiate, passez par Instagram.</p>
+          <h2>Dites-nous tout.</h2>
+          <p class="lead measure" style="text-align:center">Une commande, une question sur les allergènes, un événement à organiser. On vous répond au plus vite. Pour une réponse immédiate, Instagram reste le plus rapide.</p>
         </div>
         <form id="contact-form" class="form reveal" novalidate aria-label="Formulaire de contact">
           <div class="field" data-field="sujet">
@@ -153,7 +118,7 @@
             </select>
             <span class="field__error" role="alert">Choisissez un sujet.</span>
           </div>
-          <div class="grid" style="grid-template-columns:1fr 1fr;gap:1.4rem">
+          <div class="field-row">
             <div class="field" data-field="nom">
               <label for="c-nom">Nom</label>
               <input id="c-nom" name="nom" type="text" autocomplete="name" required maxlength="120" placeholder="Camille Durand" />
@@ -182,12 +147,56 @@
               <span>Envoyer le message</span>
               <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
             </button>
-            <a class="link-quiet" href="https://www.instagram.com/cestmondessertofficiel/" target="_blank" rel="noopener">ou nous écrire sur Instagram</a>
+            <a class="btn btn--ghost" href="https://www.instagram.com/cestmondessertofficiel/" target="_blank" rel="noopener"><span>Instagram</span></a>
           </div>
         </form>
       </div>
     </section>
+
+    <section class="section section--sand">
+      <div class="container container--narrow">
+        <div class="section-head reveal">
+          <p class="eyebrow">Questions fréquentes</p>
+          <h2>Pendant qu'on y est…</h2>
+        </div>
+        <div class="faq reveal">
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">Où est-ce que vous livrez ?<span class="faq__icon" aria-hidden="true"></span></button>
+            <div class="faq__a"><div><p>Partout en Île-de-France. Dix cuisines couvrent Paris, la petite et la grande couronne. Indiquez votre code postal au moment de commander, on rattache votre commande à la cuisine la plus proche.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">Jusqu'à quelle heure puis-je commander ?<span class="faq__icon" aria-hidden="true"></span></button>
+            <div class="faq__a"><div><p>Du début de soirée jusqu'à 4h30 du matin, tous les jours, selon les cuisines. Les horaires exacts de chacune sont sur la page Nous trouver.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">Comment se passe le paiement ?<span class="faq__icon" aria-hidden="true"></span></button>
+            <div class="faq__a"><div><p>Vous composez votre panier sur le site, vous validez par WhatsApp, et vous réglez à la livraison. Pas de paiement en ligne pour l'instant. Vous pouvez aussi commander directement via Uber Eats.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">C'est frais, ou préparé à l'avance ?<span class="faq__icon" aria-hidden="true"></span></button>
+            <div class="faq__a"><div><p>Monté minute. Les tiramisus sont assemblés à la commande, les beignets fourrés au moment, le bubble tea préparé sur place. C'est précisément pour ça qu'on livre, et qu'on ne stocke pas.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">Et les allergènes ?<span class="faq__icon" aria-hidden="true"></span></button>
+            <div class="faq__a"><div><p>Nos desserts contiennent gluten, lait, fruits à coque et dérivés du soja selon les recettes (Nutella, Bueno, Kinder, spéculoos…). Pour une intolérance précise, indiquez-le dans la note de commande ou écrivez-nous avant, on vous oriente.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__q" aria-expanded="false">Je commande pour un groupe, c'est possible ?<span class="faq__icon" aria-hidden="true"></span></button>
+            <div class="faq__a"><div><p>Bien sûr. Le coffret Allez les Bleus est pensé pour ça, et vous pouvez multiplier les quantités dans le panier. Pour une grosse commande ou un événement, contactez-nous, on s'organise.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <div class="marquee marquee--footer" aria-hidden="true">
+    <div class="marquee__track">
+      <span class="marquee__item">C'est mon dessert</span>
+      <span class="marquee__item">Votre moment sucré</span>
+      <span class="marquee__item">C'est mon dessert</span>
+      <span class="marquee__item">Livré en Île-de-France</span>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container">

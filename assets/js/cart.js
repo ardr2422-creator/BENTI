@@ -137,7 +137,7 @@
       '<div class="cart-drawer__body" id="cart-drawer-body"></div>' +
       '<div class="cart-drawer__foot" id="cart-drawer-foot">' +
       '<div class="cart-total"><span class="cart-total__label">Sous-total</span><span class="cart-total__val" id="cart-drawer-total">' + fmt(0) + '</span></div>' +
-      '<p class="cart-drawer__note">Livraison selon le magasin le plus proche &middot; Île-de-France uniquement</p>' +
+      '<p class="cart-drawer__note">Livraison selon la cuisine la plus proche &middot; Île-de-France uniquement</p>' +
       '<a class="btn btn--gold" href="panier.html"><span>Passer commande</span><span class="btn__icon" aria-hidden="true">' + arrowSvg + '</span></a>' +
       '</div>' +
       '</aside>';

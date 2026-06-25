@@ -19,3 +19,9 @@ images/illustration/desktop.ini
 .env
 README.md
 skills-lock.json
+
+# Outillage agent / artefacts (hors site)
+skills
+no slop
+.playwright-mcp
+.vercel

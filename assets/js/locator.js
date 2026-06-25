@@ -1,5 +1,5 @@
 /* =====================================================================
-   C'EST MON DESSERT — Localisateur de magasins (Île-de-France)
+   C'EST MON DESSERT — Localisateur de cuisines (Île-de-France)
    Dépend de locations-data.js (window.CMD_LOCATIONS).
    ===================================================================== */
 (function () {
@@ -99,9 +99,9 @@
       '<div class="loc-empty">' +
         '<div class="loc-empty__text">' +
           "<h3>Quelle est votre ville&nbsp;?</h3>" +
-          "<p>Choisissez un magasin ci-dessus. La carte se cale sur l'adresse exacte et vous repartez avec le bon créneau de livraison.</p>" +
+          "<p>Choisissez une cuisine ci-dessus. La carte se cale sur l'adresse exacte et vous repartez avec le bon créneau de livraison.</p>" +
         "</div>" +
-        '<div class="map-embed map-embed--france"><iframe title="Les magasins C\'est Mon Dessert en Île-de-France" src="https://maps.google.com/maps?q=' + enc("Île-de-France") + '&t=&z=9&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>' +
+        '<div class="map-embed map-embed--france"><iframe title="Les cuisines C\'est Mon Dessert en Île-de-France" src="https://maps.google.com/maps?q=' + enc("Île-de-France") + '&t=&z=9&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>' +
       "</div>";
   }
 
