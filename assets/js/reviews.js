@@ -1,96 +1,134 @@
-﻿(function () {
+/* =====================================================================
+   C'EST MON DESSERT — Avis (slider horizontal à défilement)
+   Cartes de taille égale, défilement tactile + flèches + points,
+   « Lire plus » qui agrandit la carte (et donc la section).
+   ===================================================================== */
+(function () {
   "use strict";
 
-  var carousel = document.getElementById("reviews-carousel");
-  if (!carousel) return;
+  var root = document.getElementById("reviews-carousel");
+  if (!root) return;
+  var track = root.querySelector(".reviews__track");
+  if (!track) return;
 
-  var cards = Array.prototype.slice.call(carousel.querySelectorAll(".review-card"));
+  var cards = Array.prototype.slice.call(track.querySelectorAll(".review-card"));
   if (!cards.length) return;
 
-  var dotsWrap = carousel.querySelector(".carousel__dots");
-  var prevBtn = carousel.querySelector(".carousel__nav--prev");
-  var nextBtn = carousel.querySelector(".carousel__nav--next");
-  var active = Math.floor(cards.length / 2);
-  var timer = null;
-  var dots = [];
+  var dotsWrap = root.querySelector(".carousel__dots");
+  var prevBtn = root.querySelector(".carousel__nav--prev");
+  var nextBtn = root.querySelector(".carousel__nav--next");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var behavior = reduce ? "auto" : "smooth";
 
+  /* ---- « Lire plus » : seulement quand le texte est tronqué ---- */
+  function measureMore() {
+    cards.forEach(function (card) {
+      var textEl = card.querySelector(".review-card__text");
+      if (!textEl || card.classList.contains("is-expanded")) return;
+      var existing = card.querySelector(".review-card__more");
+      var overflowing = textEl.scrollHeight - textEl.clientHeight > 4;
+      if (overflowing && !existing) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "review-card__more";
+        btn.textContent = "Lire plus";
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var open = card.classList.toggle("is-expanded");
+          btn.textContent = open ? "Lire moins" : "Lire plus";
+          stopAuto();
+          requestAnimationFrame(update);
+        });
+        textEl.insertAdjacentElement("afterend", btn);
+      } else if (!overflowing && existing) {
+        existing.remove();
+      }
+    });
+  }
+
+  /* ---- Défilement par carte ---- */
+  function step() {
+    var cs = getComputedStyle(track);
+    var gap = parseFloat(cs.columnGap || cs.gap || "0") || 0;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+  function scrollByCards(dir) {
+    track.scrollBy({ left: dir * step(), behavior: behavior });
+  }
+  if (nextBtn) nextBtn.addEventListener("click", function () { scrollByCards(1); stopAuto(); });
+  if (prevBtn) prevBtn.addEventListener("click", function () { scrollByCards(-1); stopAuto(); });
+
+  /* ---- Points ---- */
+  var dots = [];
   if (dotsWrap) {
     cards.forEach(function (_, i) {
       var d = document.createElement("button");
-      d.className = "carousel__dot";
       d.type = "button";
+      d.className = "carousel__dot";
       d.setAttribute("aria-label", "Aller à l'avis " + (i + 1));
-      d.addEventListener("click", function () { go(i); });
+      d.addEventListener("click", function () { goTo(i); stopAuto(); });
       dotsWrap.appendChild(d);
       dots.push(d);
     });
   }
-
-  function render() {
-    cards.forEach(function (card, i) {
-      var off = i - active;
-      var abs = Math.abs(off);
-      card.style.transform =
-        "translateX(calc(-50% + " + (off * 56) + "%)) scale(" + (off === 0 ? 1 : 0.82) + ") rotateY(" + (off * -9) + "deg)";
-      card.style.opacity = abs <= 1 ? (off === 0 ? "1" : "0.4") : "0";
-      card.style.filter = off === 0 ? "none" : "blur(3px)";
-      card.style.zIndex = String(20 - abs);
-      card.style.pointerEvents = off === 0 ? "auto" : "none";
-      card.style.cursor = off === 0 && card.getAttribute("data-href") ? "pointer" : "default";
-      card.setAttribute("aria-hidden", off === 0 ? "false" : "true");
+  function goTo(i) {
+    var c = cards[i];
+    if (!c) return;
+    var left = c.offsetLeft - (track.clientWidth - c.offsetWidth) / 2;
+    track.scrollTo({ left: Math.max(0, left), behavior: behavior });
+  }
+  function activeIndex() {
+    var mid = track.scrollLeft + track.clientWidth / 2;
+    var best = 0, bestDist = Infinity;
+    cards.forEach(function (c, i) {
+      var center = c.offsetLeft + c.offsetWidth / 2;
+      var d = Math.abs(center - mid);
+      if (d < bestDist) { bestDist = d; best = i; }
     });
-    dots.forEach(function (d, i) { d.classList.toggle("is-active", i === active); });
+    return best;
   }
 
-  function go(i) {
-    active = (i + cards.length) % cards.length;
-    render();
-    restart();
-  }
-  function next() { go(active + 1); }
-  function prev() { go(active - 1); }
-  function restart() {
-    if (timer) clearInterval(timer);
-    timer = setInterval(next, 5500);
+  /* ---- État (points actifs + flèches désactivées aux extrémités) ---- */
+  function update() {
+    var idx = activeIndex();
+    dots.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); });
+    var max = track.scrollWidth - track.clientWidth;
+    if (prevBtn) prevBtn.disabled = track.scrollLeft <= 2;
+    if (nextBtn) nextBtn.disabled = track.scrollLeft >= max - 2;
   }
 
-  if (nextBtn) nextBtn.addEventListener("click", next);
-  if (prevBtn) prevBtn.addEventListener("click", prev);
-  carousel.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
-  carousel.addEventListener("mouseleave", restart);
-  cards.forEach(function (card, i) {
-    card.addEventListener("click", function () {
-      if (i !== active) {
-        go(i);
-      } else {
-        var url = card.getAttribute("data-href");
-        if (url) window.open(url, "_blank", "noopener,noreferrer");
-      }
-    });
-  });
+  var raf = null;
+  track.addEventListener("scroll", function () {
+    if (raf) return;
+    raf = requestAnimationFrame(function () { raf = null; update(); });
+  }, { passive: true });
+  window.addEventListener("resize", function () { measureMore(); update(); }, { passive: true });
 
-  var tStartX = null, tStartY = null, swiping = false;
-  carousel.addEventListener("touchstart", function (e) {
-    tStartX = e.touches[0].clientX;
-    tStartY = e.touches[0].clientY;
-    swiping = false;
-  }, { passive: true });
-  carousel.addEventListener("touchmove", function (e) {
-    if (tStartX === null) return;
-    var dx = e.touches[0].clientX - tStartX;
-    var dy = e.touches[0].clientY - tStartY;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) swiping = true;
-  }, { passive: true });
-  carousel.addEventListener("touchend", function (e) {
-    if (tStartX === null) return;
-    var dx = e.changedTouches[0].clientX - tStartX;
-    var dy = e.changedTouches[0].clientY - tStartY;
-    if (swiping && Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
-      if (dx < 0) next(); else prev();
-    }
-    tStartX = tStartY = null;
-  }, { passive: true });
+  /* ---- Lecture auto douce (s'arrête dès que l'utilisateur agit) ---- */
+  var timer = null;
+  var stopped = reduce;
+  function tick() {
+    var max = track.scrollWidth - track.clientWidth;
+    if (track.scrollLeft >= max - 2) track.scrollTo({ left: 0, behavior: behavior });
+    else scrollByCards(1);
+  }
+  function pauseAuto() { if (timer) { clearInterval(timer); timer = null; } }
+  function startAuto() {
+    if (timer || stopped || cards.length < 2) return;
+    timer = setInterval(tick, 5500);
+  }
+  function stopAuto() { stopped = true; pauseAuto(); }
 
-  render();
-  restart();
+  root.addEventListener("mouseenter", pauseAuto);
+  root.addEventListener("mouseleave", startAuto);
+  root.addEventListener("focusin", pauseAuto);
+  track.addEventListener("touchstart", stopAuto, { passive: true });
+  track.addEventListener("wheel", function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stopAuto(); }, { passive: true });
+
+  /* ---- Init ---- */
+  function init() { measureMore(); update(); startAuto(); }
+  init();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { measureMore(); update(); });
+  }
 })();

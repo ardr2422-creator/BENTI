@@ -44,6 +44,7 @@
   var lenis = null;
   if (!prefersReduced && typeof window.Lenis === "function") {
     lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
+    window.CMDLenis = lenis;
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);

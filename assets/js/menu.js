@@ -59,35 +59,73 @@
   /* Rendu du catalogue */
   root.innerHTML = cats.map(categoryHtml).join("");
 
-  /* Barre de filtres (sticky) */
+  /* Barre d'ancres (sticky) : chaque bulle fait défiler vers sa catégorie,
+     et la bulle active suit la catégorie visible pendant le scroll. */
   if (filters) {
-    var btns = '<button class="menu-nav__btn is-active" type="button" data-filter="all">Tout</button>';
-    btns += cats.map(function (c) {
-      return '<button class="menu-nav__btn" type="button" data-filter="' + c.id + '">' + esc(c.nom) + '</button>';
+    filters.innerHTML = cats.map(function (c) {
+      return '<button class="menu-nav__btn" type="button" data-target="' + c.id + '">' + esc(c.nom) + '</button>';
     }).join("");
-    filters.innerHTML = btns;
 
     var sections = Array.prototype.slice.call(root.querySelectorAll(".menu-category"));
     var pills = Array.prototype.slice.call(filters.querySelectorAll(".menu-nav__btn"));
+    var lastActive = null;
 
-    function applyFilter(id) {
-      sections.forEach(function (s) {
-        s.hidden = (id !== "all" && s.getAttribute("data-cat") !== id);
-      });
+    function setActive(id) {
+      if (id === lastActive) return;
+      lastActive = id;
       pills.forEach(function (b) {
-        b.classList.toggle("is-active", b.getAttribute("data-filter") === id);
+        var on = b.getAttribute("data-target") === id;
+        b.classList.toggle("is-active", on);
+        if (on) {
+          /* garder la bulle active visible dans la barre horizontale */
+          var left = b.offsetLeft - (filters.clientWidth - b.offsetWidth) / 2;
+          filters.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+        }
       });
     }
+
+    function scrollToCat(id) {
+      var sec = document.getElementById(id);
+      if (!sec) return;
+      var stickyTop = parseFloat(getComputedStyle(filters).top) || 0;
+      var offset = stickyTop + filters.offsetHeight + 18;
+      var y = sec.getBoundingClientRect().top + window.scrollY - offset;
+      if (window.CMDLenis) window.CMDLenis.scrollTo(y, { offset: 0 });
+      else window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
     filters.addEventListener("click", function (e) {
-      var b = e.target.closest("[data-filter]");
+      var b = e.target.closest("[data-target]");
       if (!b) return;
-      applyFilter(b.getAttribute("data-filter"));
+      var id = b.getAttribute("data-target");
+      setActive(id);
+      scrollToCat(id);
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
     });
 
-    /* Lien entrant menu.html#categorie : pré-sélectionne le filtre */
+    /* Scroll-spy : la bulle change en fonction de la catégorie à l'écran */
+    var spyRaf = null;
+    function spy() {
+      spyRaf = null;
+      var line = filters.getBoundingClientRect().bottom + 44;
+      var current = sections[0];
+      sections.forEach(function (s) {
+        if (s.getBoundingClientRect().top <= line) current = s;
+      });
+      if (current) setActive(current.getAttribute("data-cat"));
+    }
+    window.addEventListener("scroll", function () {
+      if (spyRaf) return;
+      spyRaf = requestAnimationFrame(spy);
+    }, { passive: true });
+
+    /* Lien entrant menu.html#categorie */
     var hash = (location.hash || "").replace("#", "");
     if (hash && cats.some(function (c) { return c.id === hash; })) {
-      applyFilter(hash);
+      setActive(hash);
+      setTimeout(function () { scrollToCat(hash); }, 90);
+    } else {
+      setActive(cats[0].id);
     }
   }
 })();

@@ -7,7 +7,7 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname);
 loadEnvFile(ROOT);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2000;
 const HOST = process.env.HOST || "127.0.0.1";
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "contact@cestmondessert.fr";
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "C'est Mon Dessert <contact@cestmondessert.fr>";
