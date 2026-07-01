@@ -1,0 +1,149 @@
+# Benti — état du projet (démo spéculative)
+
+Refonte complète du site Benti (restaurant tunisien, Paris 11 & 3) en **Next.js 15
+(App Router) + TypeScript + Tailwind**, prête pour Vercel. Objectif : remplacer le
+template Partoo/CentralApp actuel par un vrai site à fort craft.
+
+Branche de travail : **`benti-site`**. Build vérifié **propre** (`npm run build`, 26 routes).
+
+---
+
+## ⚠️ Déploiement — À LIRE (rien n'a été poussé)
+
+- **Aucun `git push` n'a été fait.** Tout est en local sur la branche `benti-site`.
+- `git remote -v` → `origin` pointe sur **`dr-wings.git`** (et un remote `saiyan` sur
+  `saiyan-food.git`). **Aucun remote ne pointe sur le repo BENTI.**
+- Le dossier `.vercel/project.json` est lié au projet Vercel **`cmd`** (C'est Mon
+  Dessert), **pas** Benti.
+- Conformément à la consigne : **je me suis arrêté avant tout push.** Pousser sur
+  `dr-wings` ou déployer sur le projet Vercel `cmd` écraserait un autre projet.
+
+### À faire au réveil pour déployer (toi)
+1. Créer / récupérer le repo **BENTI** sur GitHub, puis :
+   ```bash
+   git remote add benti https://github.com/<toi>/BENTI.git   # ou rename origin
+   git remote -v            # VÉRIFIER que ça pointe bien sur BENTI
+   git push benti benti-site:main   # ou la branche voulue
+   ```
+2. Lier le bon projet Vercel à BENTI (supprimer/écraser `.vercel/` qui pointe sur `cmd`,
+   ou refaire `vercel link` sur le projet Benti). Next.js est auto-détecté, pas besoin de
+   `vercel.json`.
+3. Vérifier le domaine (`benti-paris.fr`) côté Vercel.
+
+---
+
+## Ce qui est construit
+
+**Stack & fondations**
+- App Router, TS strict, Tailwind (tokens palette Sidi Bou Saïd : bleu `#2DA5C3`,
+  harissa `#AC4066`, terracotta `#B46A35`, olive `#417A6E` + jaune soleil).
+- Typo : **Fraunces** (display), **Hanken Grotesk** (corps), **Caveat** (accent manuscrit).
+- Motion global (`components/SiteMotion.tsx`) : Lenis smooth scroll, reveal au scroll,
+  stagger, parallax, coverflow, marquees. **Animations forcées** (on ignore
+  `prefers-reduced-motion`, comme demandé).
+- Favicon / app icon depuis le logo. OG image dynamique (`app/opengraph-image.tsx`,
+  runtime edge).
+
+**Pages FR** : `/` (home complète), `/carte`, `/traiteur`, `/adresses`,
+`/adresses/paris-11`, `/adresses/paris-3`, `/contact`, `/mentions-legales`,
+`/politique-confidentialite`, `/cookies`.
+
+**Version EN complète** (site bilingue) : `/en`, `/en/menu`, `/en/catering`,
+`/en/locations`, `/en/locations/paris-11|paris-3`, `/en/contact`, `/en/legal-notice`,
+`/en/privacy-policy`, `/en/cookies`. Sélecteur de langue FR/EN dans la nav (desktop +
+drawer), `hreflang` alternates par page, `og:locale`, `<html lang>` dynamique.
+
+**Home** : héros vidéo/photo makloub (parallax) → histoire Abir & Yassine (Benti = « ma
+fille », Sidi Bou Saïd, makloub) → highlights carte (coverflow des 6 makloubs + Bols /
+Batatas / Boissons) → **slider vidéo** (VideoShowcase) → **slider avis** + note réelle
+4,8/5 · 665 avis → **stories/presse** (strip Instagram + mentions presse) → bloc traiteur
++ CTA devis → 2 adresses → bloc Instagram → footer complet.
+
+**Extras démo**
+- Barre d'action **sticky mobile** (Voir la carte / Commander).
+- **404** soignée, **loading** animé, **transitions de page** (fade/slide).
+- Nav mobile en **drawer** latéral.
+- Cookie banner + pages légales.
+- Formulaires contact & devis (validation, état de succès).
+
+**SEO / technique**
+- Metadata par page (title/description/canonical/OpenGraph).
+- **JSON-LD** : `Restaurant` + `FoodEstablishment`/LocalBusiness par adresse (NAP
+  cohérent, horaires réels, `aggregateRating` 4,8/665), `Menu`, `Organization`,
+  `WebSite`, fils d'Ariane (`BreadcrumbList`).
+- `sitemap.xml` (FR + EN avec alternates), `robots.txt`.
+- Alt text + HTML sémantique (header/main/footer, `dl` horaires, `figure`, aria).
+
+**Données réelles récupérées (crawl benti-paris.fr / RestaurantGuru)**
+- Horaires : **Lun–Ven 11:45–15:00, Sam 12:00–16:00, Dim fermé** (spot du **midi**,
+  sur place & à emporter). Copie ajustée en conséquence (pas de service du soir).
+- Note : **4,8/5, 665 avis Google** (+ 5/5 TripAdvisor) — affichée + dans le schema.
+- Téléphones : Paris 11 `01 42 72 12 01`, Paris 3 `01 86 04 19 15`.
+- Textes EN calqués sur le ton du site officiel bilingue.
+
+**Assets utilisés (depuis `/infos`)**
+- Logo, photo makloub (héros), intérieur bleu Sidi Bou, devanture (file d'attente),
+  photo fondateurs Abir & Yassine, 57 stories clients Instagram (preuve sociale réelle),
+  22 photos traiteur, vidéo de présentation d'Abir.
+
+---
+
+## Placeholders / à remplacer avec leurs vrais éléments
+
+- **Avis (slider témoignages)** : rédigés en **illustratif** (prénoms + quartier), ton
+  fidèle. La note agrégée 4,8/665 est réelle. → À remplacer par de vrais avis Google /
+  reposts au lancement. (Les 57 stories du strip sont, elles, réelles.)
+- **Mentions presse** (Le Bonbon, Enlarge your Paris…) : illustratives → à confirmer.
+- **Photos par recette de makloub** : aucune photo par recette dans `/infos`. Les cartes
+  makloub sont des **cartes couleur** (design assumé, honnête). → Fournir des photos par
+  recette pour basculer en cartes photo (le composant `MakloubCard` gère déjà `image`).
+- **Livraison** : aucun lien Uber Eats / Deliveroo public trouvé au crawl. « Commander »
+  pointe vers la carte + **clic-pour-appeler** (les deux numéros). → Brancher les liens
+  livraison dans `SITE.delivery` (`lib/site.ts`) s'ils existent.
+- **Formulaires** contact & devis : pas de backend. Ils ouvrent un **mailto** de secours
+  (`contact@benti-paris.fr`, à confirmer) et affichent une confirmation. → Brancher un
+  endpoint (`/api/inquiry`, Resend/Formspree…) au lancement.
+- **Email** `contact@benti-paris.fr` : supposé, à confirmer.
+- **Mentions légales** : SIRET, forme juridique, capital, assurance = « à compléter ».
+- **Vidéo** : une seule vidéo fournie. Le slider est prêt pour plusieurs — déposer
+  d'autres fichiers dans `/public/video` et compléter `VIDEOS` (`lib/site.ts`).
+- **OG image** : générée dynamiquement (typo système). Peut être remplacée par une image
+  fixe brandée si besoin.
+- **Horaires** : source publique (le widget officiel affichait « ouvre mercredi » ;
+  RestaurantGuru donne le détail par jour). → À confirmer par Benti.
+
+---
+
+## Vérifications effectuées
+
+- `npm run build` : **propre**, 26 routes (0 erreur de type).
+- Test navigateur (desktop 1440) : home (héros, histoire, coverflow), `/carte`
+  (scrollspy + CTA téléphone), `/en` (traduction complète + sélecteur de langue) —
+  **aucune erreur console**, toutes les routes en 200 (curl : `/`, `/en`, `/carte`,
+  `/en/menu`, `/traiteur`, `/adresses/paris-11`, `/contact`, `/sitemap.xml`,
+  `/robots.txt`).
+- Mobile : layout responsive (Tailwind `lg:`), drawer, sticky bar, coverflow scroll-snap
+  implémentés. Vérif visuelle 375px non concluante via l'outil navigateur (la fenêtre
+  Chrome n'a pas voulu descendre sous sa largeur min pendant l'automatisation) → à
+  re-checker à la main dans les devtools ; le code responsive est en place.
+
+## Détails d'implémentation utiles
+
+- Source de vérité contenu/marque : `lib/site.ts` (NAP, carte, adresses, vidéos),
+  `lib/i18n.ts` (dictionnaire FR/EN typé), `lib/localized.ts` (carte/avis EN),
+  `lib/schema.ts` (JSON-LD), `lib/reviews.ts`.
+- Pages = fines routes FR + `/en` rendant des composants partagés
+  (`components/pages/*Content.tsx`) pilotés par `lang` → une seule implémentation
+  bilingue.
+- Anciens fichiers de l'ancien projet supprimés (serveur Express `server.js`, `api/`,
+  `vercel.json`, etc.). Un **serveur statique tiers tourne encore sur le port 3000**
+  (projet « Kayani Kitchen », PID externe) — pas lié à Benti, laissé intact. J'ai testé
+  Benti sur le **port 3100**.
+
+## Lancer en local
+```bash
+npm install
+npm run dev      # http://localhost:3000
+# ou build prod :
+npm run build && npm run start -- -p 3100
+```
