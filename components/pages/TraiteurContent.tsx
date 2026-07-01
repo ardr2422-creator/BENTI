@@ -13,6 +13,18 @@ import { breadcrumbSchema } from "@/lib/schema";
 const GALLERY = [1, 3, 5, 7, 9, 11, 13, 15].map((n) => `/catering/catering-${n}.jpg`);
 const STRIP = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20].map((n) => `/catering/catering-${n}.jpg`);
 
+// Trames bento : tuiles de tailles variées (feature 2×2, larges, hautes).
+const BENTO = [
+  "col-span-2 row-span-2",
+  "",
+  "",
+  "row-span-2",
+  "col-span-2",
+  "",
+  "",
+  "col-span-2",
+];
+
 export default function TraiteurContent({ lang }: { lang: Lang }) {
   const tr = t(lang);
   const c = tr.traiteur;
@@ -49,7 +61,7 @@ export default function TraiteurContent({ lang }: { lang: Lang }) {
       </PageHeader>
 
       {/* Bandeau photo */}
-      <section className="relative h-[42vh] min-h-[320px] overflow-hidden">
+      <section className="relative h-[38vh] min-h-[280px] overflow-hidden">
         <Image
           src="/catering/catering-1.jpg"
           alt={alt}
@@ -58,11 +70,15 @@ export default function TraiteurContent({ lang }: { lang: Lang }) {
           data-parallax="0.1"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-sidi-ink/70 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0">
-          <div className="container-b pb-8">
-            <p className="font-hand text-3xl text-cream md:text-4xl">{c.quote}</p>
-          </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-sidi-ink/45 to-transparent" />
+      </section>
+
+      {/* Citation — fond couleur unie */}
+      <section className="bg-harissa py-14 text-cream md:py-16">
+        <div className="container-b text-center">
+          <p className="mx-auto max-w-3xl text-balance font-hand text-3xl leading-snug text-cream md:text-4xl">
+            {c.quote}
+          </p>
         </div>
       </section>
 
@@ -128,15 +144,21 @@ export default function TraiteurContent({ lang }: { lang: Lang }) {
           <SectionHeading center eyebrow={c.galleryEyebrow} title={c.galleryTitle} />
         </div>
         <div className="container-b mt-12">
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="grid auto-rows-[130px] grid-flow-dense grid-cols-2 gap-3 md:auto-rows-[180px] md:grid-cols-4">
             {GALLERY.map((src, i) => (
               <div
                 key={src}
-                className={`reveal-img overflow-hidden rounded-2xl shadow-soft ${
-                  i % 4 === 0 ? "row-span-2 aspect-[3/4]" : "aspect-square"
-                }`}
+                className={`reveal-img overflow-hidden rounded-2xl shadow-soft ${BENTO[i % BENTO.length]}`}
               >
-                <Image src={src} alt={alt} width={400} height={400} className="h-full w-full object-cover" loading="lazy" />
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={640}
+                  height={640}
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>

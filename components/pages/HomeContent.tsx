@@ -33,11 +33,11 @@ export default function HomeContent({ lang }: { lang: Lang }) {
       <section className="relative flex min-h-[92vh] items-end overflow-hidden pb-16 pt-32 md:pb-24">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <Image
-            src="/images/food/food-2.jpg"
+            src="/images/hero/sidi-bou.jpg"
             alt={
               lang === "fr"
-                ? "Deux makloubs Benti garnis de keftas, mozzarella et salade, sur fond de zellige tunisien"
-                : "Two Benti makloubs filled with keftas, mozzarella and salad, on a Tunisian zellige backdrop"
+                ? "Coucher de soleil sur Sidi Bou Saïd : dôme blanc, palmier et mer turquoise"
+                : "Sunset over Sidi Bou Saïd: white dome, palm tree and turquoise sea"
             }
             fill
             priority
@@ -45,8 +45,8 @@ export default function HomeContent({ lang }: { lang: Lang }) {
             data-parallax="0.12"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-sidi-ink/90 via-sidi-ink/45 to-sidi-ink/25" />
-          <div className="absolute inset-0 bg-gradient-to-r from-sidi-ink/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-sidi-ink/95 via-sidi-ink/50 to-sidi-ink/15" />
+          <div className="absolute inset-0 bg-gradient-to-r from-sidi-ink/75 via-sidi-ink/20 to-transparent" />
         </div>
 
         <div className="container-b">
@@ -85,11 +85,6 @@ export default function HomeContent({ lang }: { lang: Lang }) {
             </div>
           </div>
         </div>
-
-        <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-cream/70 md:flex">
-          <span className="text-xs uppercase tracking-[0.25em]">{tr.hero.scroll}</span>
-          <span className="h-10 w-px animate-floaty bg-cream/50" />
-        </div>
       </section>
 
       {/* Marquee */}
@@ -105,8 +100,8 @@ export default function HomeContent({ lang }: { lang: Lang }) {
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="zellige absolute inset-0 opacity-[0.5]" aria-hidden />
         <div className="container-b relative grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="relative reveal-img">
-            <div className="overflow-hidden rounded-[2rem] shadow-lift">
+          <div className="reveal-img">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lift">
               <Image
                 src="/images/food/food-1.jpg"
                 alt={
@@ -114,24 +109,26 @@ export default function HomeContent({ lang }: { lang: Lang }) {
                     ? "Intérieur du restaurant Benti : mur bleu arqué, lampes en osier, bougainvilliers"
                     : "Inside Benti: blue arched wall, wicker lamps, bougainvillea"
                 }
-                width={720}
-                height={540}
+                fill
                 sizes="(max-width: 1024px) 100vw, 560px"
-                className="h-full w-full object-cover"
+                className="object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-sidi-ink/45 via-transparent to-transparent" aria-hidden />
+              {/* Badge "ma fille" — placé À L'INTÉRIEUR de l'image */}
+              <span className="absolute left-4 top-4 rotate-[-4deg] rounded-full bg-harissa px-4 py-2 font-hand text-lg text-cream shadow-card md:text-xl">
+                {tr.concept.founderTag}
+              </span>
+              {/* Photo fondateurs — encart À L'INTÉRIEUR de l'image */}
+              <div className="absolute bottom-4 right-4 w-28 overflow-hidden rounded-2xl border-4 border-paper shadow-card sm:w-32 md:w-40">
+                <Image
+                  src="/images/founders/abir-yassine.jpg"
+                  alt={lang === "fr" ? "Abir et Yassine, fondateurs de Benti" : "Abir and Yassine, founders of Benti"}
+                  width={260}
+                  height={320}
+                  className="aspect-[4/5] h-full w-full object-cover"
+                />
+              </div>
             </div>
-            <div className="absolute -bottom-8 -right-4 w-40 rotate-3 overflow-hidden rounded-2xl border-4 border-paper shadow-card md:-right-8 md:w-52">
-              <Image
-                src="/images/founders/abir-yassine.jpg"
-                alt={lang === "fr" ? "Abir et Yassine, fondateurs de Benti" : "Abir and Yassine, founders of Benti"}
-                width={260}
-                height={320}
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <span className="absolute -left-3 top-6 hidden rotate-[-6deg] rounded-full bg-harissa px-4 py-2 font-hand text-xl text-cream shadow-card md:block">
-              {tr.concept.founderTag}
-            </span>
           </div>
 
           <div data-stagger>
@@ -211,20 +208,20 @@ export default function HomeContent({ lang }: { lang: Lang }) {
           </p>
         </div>
 
-        <div className="container-b mt-10 grid gap-5 sm:grid-cols-3">
+        <div className="container-b mt-12 grid gap-5 sm:grid-cols-3">
           {tr.highlights.cats.map((cat, i) => (
             <Link
               key={cat.t}
               href={localizedHref(cat.href.split("#")[0], lang) + "#" + cat.href.split("#")[1]}
-              className={`reveal lift group relative overflow-hidden rounded-3xl ${
+              className={`reveal group relative isolate overflow-hidden rounded-[1.75rem] ${
                 ["bg-olive", "bg-terracotta", "bg-sidi-deep"][i]
-              } p-6 text-cream`}
+              } p-7 text-white shadow-soft transition-shadow duration-500 hover:shadow-card`}
             >
-              <div className="zellige absolute inset-0 opacity-20" aria-hidden />
+              <div className="zellige absolute inset-0 -z-10 opacity-20" aria-hidden />
               <div className="relative">
-                <h3 className="font-display text-2xl">{cat.t}</h3>
-                <p className="mt-2 text-cream/85">{cat.d}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold">
+                <h3 className="font-display text-2xl text-white">{cat.t}</h3>
+                <p className="mt-2 text-white/90">{cat.d}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
                   {tr.highlights.catCta}{" "}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
@@ -285,7 +282,7 @@ export default function HomeContent({ lang }: { lang: Lang }) {
               <span className="text-sm text-ink-soft">· {SITE.rating.count} {tr.reviews.ratingLabel}</span>
             </span>
           </div>
-          <div className="mx-auto mt-10 max-w-3xl">
+          <div className="mx-auto mt-10 max-w-5xl">
             <ReviewSlider items={testimonials} />
           </div>
         </div>
@@ -345,9 +342,9 @@ export default function HomeContent({ lang }: { lang: Lang }) {
                   </Link>
                 </div>
               </div>
-              <div className="reveal-img relative grid grid-cols-2 gap-3">
-                {["/catering/catering-1.jpg", "/catering/catering-5.jpg", "/catering/catering-8.jpg", "/catering/catering-12.jpg"].map((src, i) => (
-                  <div key={src} className={`overflow-hidden rounded-2xl border-2 border-cream/20 shadow-card ${i % 2 ? "translate-y-4" : ""}`}>
+              <div className="reveal-img grid grid-cols-2 gap-3">
+                {["/catering/catering-1.jpg", "/catering/catering-5.jpg", "/catering/catering-8.jpg", "/catering/catering-12.jpg"].map((src) => (
+                  <div key={src} className="overflow-hidden rounded-2xl shadow-card ring-1 ring-cream/25">
                     <Image
                       src={src}
                       alt={lang === "fr" ? "Buffet traiteur Benti" : "Benti catering buffet"}

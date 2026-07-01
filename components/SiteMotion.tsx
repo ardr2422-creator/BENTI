@@ -149,10 +149,31 @@ export default function SiteMotion() {
         };
         scroller.addEventListener("scroll", queue, { passive: true });
         window.addEventListener("resize", queue, { passive: true });
+
+        // Clic sur une carte → on la recentre (surtout confortable sur PC).
+        // Calcul via getBoundingClientRect (robuste : offsetLeft dépend de
+        // l'offsetParent, qui n'est pas forcément le scroller).
+        const onCardClick = (e: MouseEvent) => {
+          const card = (e.target as HTMLElement)?.closest?.(
+            "[data-coverflow] > *"
+          ) as HTMLElement | null;
+          if (!card || card.parentElement !== scroller) return;
+          const cardRect = card.getBoundingClientRect();
+          const scRect = scroller.getBoundingClientRect();
+          const delta =
+            cardRect.left + cardRect.width / 2 - (scRect.left + scRect.width / 2);
+          scroller.scrollTo({
+            left: scroller.scrollLeft + delta,
+            behavior: "smooth",
+          });
+        };
+        scroller.addEventListener("click", onCardClick);
+
         update();
         cleanups.push(() => {
           scroller.removeEventListener("scroll", queue);
           window.removeEventListener("resize", queue);
+          scroller.removeEventListener("click", onCardClick);
         });
       });
 

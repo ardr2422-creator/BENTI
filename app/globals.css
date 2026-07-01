@@ -186,6 +186,12 @@
   }
   .marquee__track.marquee--reverse { animation-direction: reverse; }
   .marquee--pausable:hover .marquee__track { animation-play-state: paused; }
+  /* Keyframes déclarées en dur : Tailwind purge @keyframes marquee tant qu'aucune
+     classe animate-marquee n'est utilisée → les bannières ne défilaient pas. */
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
   .marquee__item {
     font-family: var(--font-display), serif;
     font-weight: 600;
@@ -265,30 +271,53 @@
   /* Coverflow horizontal (sliders makloubs) */
   .coverflow {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.5rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 0.5rem 0 1.5rem;
+    /* Padding vertical généreux : la carte active grandit + ombre → pas de découpe. */
+    padding: 1.75rem 0 2.75rem;
     scroll-padding-inline: clamp(1.15rem, 4vw, 2.75rem);
   }
   .coverflow > * {
     scroll-snap-align: center;
+    scroll-snap-stop: always;
     flex: 0 0 auto;
     width: min(80vw, 340px);
   }
   @media (min-width: 900px) {
     .coverflow > * {
+      cursor: pointer;
       transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
         opacity 0.55s ease, filter 0.55s ease;
-      transform: scale(0.9);
-      opacity: 0.62;
-      filter: saturate(0.85);
+      transform: scale(0.86);
+      opacity: 0.55;
+      filter: saturate(0.85) blur(2px);
     }
     .coverflow > *.is-active {
       transform: scale(1);
       opacity: 1;
       filter: none;
     }
+  }
+
+  /* Slider avis — cartes latérales floutées, carte centrale nette */
+  .peek-track {
+    display: flex;
+    align-items: stretch;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .peek-card {
+    flex: 0 0 auto;
+    transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease;
+    opacity: 0.4;
+    filter: blur(3px) saturate(0.85);
+    transform: scale(0.9);
+  }
+  .peek-card.is-active {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
   }
 
   /* Zellige — subtle Tunisian tile texture */

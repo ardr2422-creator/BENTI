@@ -54,7 +54,7 @@ const MENU_EN: Record<string, SectionTr> = {
   makloub: {
     title: "Makloub sandwich",
     intro:
-      "A bread dough between pizza and pita, filled and folded. Our hero. Spicy version available.",
+      "A bread dough between pizza and pita, filled and folded. Our hero, five recipes.",
     note: "Makloub alone €9.90 · Makloub + batatas €10.90",
     items: MAKLOUB_EN,
   },
@@ -159,59 +159,75 @@ import { TESTIMONIALS, PRESS, type Testimonial } from "./reviews";
 const TESTIMONIALS_EN: Testimonial[] = [
   {
     quote:
-      "The Tunis has become my lunch ritual. The makloub dough is incredible, soft and golden at once. You can taste the homemade.",
-    author: "Inès",
-    meta: "Paris 11",
+      "A wonderful find! Tasty, generous cooking prepared with care. The flavours are authentic and well balanced, every dish showcases Tunisian specialities.",
+    author: "djam djamel",
+    meta: "Local Guide · Dec. 2025",
     rating: 5,
+    avatar: "/reviews/profiles/djam.jpg",
   },
   {
     quote:
-      "Sidi Bou Saïd vibes, a warm welcome from Abir and Yassine, and a white sauce to die for. It feels like a holiday in Tunisia.",
-    author: "Mehdi",
-    meta: "Regular · Filles du Calvaire",
+      "The discovery of the year! Honestly the best makloub sandwich in Paris, and in Tunisia too. Fresh, homemade produce, and the desserts are a treat.",
+    author: "Houssem Khanfir",
+    meta: "Local Guide",
     rating: 5,
+    avatar: "/reviews/profiles/houssem.jpg",
   },
   {
     quote:
-      "The veggie sunny bowl is generous and full of flavour. Finally a veggie option that isn't sad. Big crush.",
-    author: "Camille",
-    meta: "Paris 3",
+      "Excellent makloub! Homemade bread, marinated chicken, homemade harissa… For €10.90 with the potatoes you're more than full. I'll definitely be back!",
+    author: "JL Honda",
+    meta: "Local Guide · 1,911 photos",
     rating: 5,
+    avatar: "/reviews/profiles/jl.jpg",
   },
   {
     quote:
-      "We ordered Benti catering for a film shoot, everyone loved it. Smooth delivery, colourful buffet, not a single wrong note.",
-    author: "Sofiane",
-    meta: "Production · Paris",
+      "So good! We had two menus, one chicken, one merguez: an explosion of flavour. The potatoes are delicious and the team young, dynamic and welcoming.",
+    author: "Olfa Mzita",
+    meta: "Local Guide",
     rating: 5,
+    avatar: "/reviews/profiles/olfa.jpg",
   },
   {
     quote:
-      "The tuna Carthage reminded me of my grandmother's fricassé. Rare to find these flavours in Paris. Thank you Benti.",
-    author: "Yasmine",
-    meta: "Loyal customer",
+      "Unbeatable value! The staff is lovely, especially the lady at the counter who greets you with a big smile. You feel at home straight away.",
+    author: "Hind Yamini",
+    meta: "Local Guide",
     rating: 5,
+    avatar: "/reviews/profiles/hind.jpg",
   },
   {
     quote:
-      "Unbeatable value. A makloub + batatas and I'm set for the afternoon. The garlic-parsley batatas are dangerous.",
-    author: "Thomas",
-    meta: "Office in Voltaire",
+      "The Makloub + batatas menu with the homemade Benti melon drink: I really loved it, it was so good! I highly recommend this place.",
+    author: "Segui Ryan",
+    meta: "Local Guide · July 2025",
     rating: 5,
+    avatar: "/reviews/profiles/ryan.jpg",
   },
   {
     quote:
-      "Spicy version for the brave: it wakes you up! And the dessert of the day changes every visit, I love the surprise.",
-    author: "Nadia",
-    meta: "Paris 11",
+      "Delicious Tunisian sandwiches! The manager is adorable and the service is quick. There are a few tables to eat in. Go for it, it's truly delicious!",
+    author: "Jeanne Le Nezet",
+    meta: "Local Guide",
     rating: 5,
+    avatar: "/reviews/profiles/jeanne.jpg",
   },
   {
     quote:
-      "Two locations, same good energy. The colours, the music, the smile. Benti is a little piece of Tunisia in the neighbourhood.",
-    author: "Léa",
-    meta: "Haut-Marais",
+      "Impeccable, their sandwiches and dishes are so good. Welcoming, they take the time to chat with customers — a real change and a pleasure.",
+    author: "Chamsou Merouani",
+    meta: "Local Guide · 2,247 photos",
     rating: 5,
+    avatar: "/reviews/profiles/chamsou.jpg",
+  },
+  {
+    quote:
+      "A warm welcome, the lady in charge is very friendly. Beautiful decoration: a real trip to Tunisia, to childhood, to the houses of Sidi Bou Saïd.",
+    author: "Hayfa BTH",
+    meta: "Local Guide",
+    rating: 5,
+    avatar: "/reviews/profiles/hayfa.jpg",
   },
 ];
 

@@ -42,19 +42,29 @@ export default function AddressCard({
           <Pin className="mt-1 h-4 w-4 shrink-0 text-terracotta" />
           {a.street}, {a.postalCode} {a.locality}
         </p>
-        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          <a
-            href={a.phoneHref}
-            className="inline-flex items-center gap-2 font-semibold text-sidi-ink transition-colors hover:text-terracotta"
-          >
-            <Phone className="h-4 w-4 text-terracotta" />
-            {a.phone}
-          </a>
-          <span className="inline-flex items-center gap-2 text-ink-soft">
-            <Clock className="h-4 w-4 text-olive" />
-            {tr.lunchOnly}
-          </span>
-        </div>
+        <a
+          href={a.phoneHref}
+          className="inline-flex items-center gap-2 self-start text-sm font-semibold text-sidi-ink transition-colors hover:text-terracotta"
+        >
+          <Phone className="h-4 w-4 text-terracotta" />
+          {a.phone}
+        </a>
+        <dl className="space-y-1.5 rounded-2xl bg-cream/70 p-4 text-sm">
+          {a.hoursView.map((h) => {
+            const closed = h.slots[0] === "Fermé" || h.slots[0] === "Closed";
+            return (
+              <div key={h.days} className="flex items-center justify-between gap-3">
+                <dt className="inline-flex items-center gap-2 text-ink-soft">
+                  <Clock className="h-3.5 w-3.5 shrink-0 text-olive" />
+                  {h.days}
+                </dt>
+                <dd className={`text-right font-semibold ${closed ? "text-harissa" : "text-sidi-ink"}`}>
+                  {h.slots.join(" · ")}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
         <div className="mt-auto flex items-center gap-3 pt-2">
           <Link href={href} className="btn btn--sidi !py-2.5 !px-4">
             <span>{tr.seeAddress}</span>

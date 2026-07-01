@@ -26,7 +26,7 @@ export default function MakloubCard({
 
   return (
     <article
-      className={`${reveal ? "reveal" : ""} lift group relative flex flex-col overflow-hidden rounded-3xl border border-sidi-ink/10 bg-paper shadow-soft ${className}`}
+      className={`${reveal ? "reveal" : ""} group relative flex flex-col overflow-hidden rounded-3xl border border-sidi-ink/10 bg-paper shadow-soft transition-shadow duration-500 hover:shadow-card ${className}`}
     >
       <div className={`relative overflow-hidden ${theme.bg} px-6 pb-5 pt-6`}>
         <div className="zellige absolute inset-0 opacity-20" aria-hidden />
@@ -36,7 +36,7 @@ export default function MakloubCard({
             alt={`Makloub ${dish.name} — Benti`}
             fill
             sizes="340px"
-            className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+            className="object-cover opacity-90"
           />
         )}
         <span

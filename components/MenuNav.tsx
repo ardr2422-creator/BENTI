@@ -25,9 +25,9 @@ export default function MenuNav({ items }: { items: Item[] }) {
   }, [items]);
 
   return (
-    <div className="sticky top-[68px] z-30 -mx-4 border-y border-sidi-ink/10 bg-cream/90 px-4 backdrop-blur-md">
-      <div className="container-b !px-0">
-        <div className="no-scrollbar flex gap-2 overflow-x-auto py-3">
+    <div className="sticky top-[88px] z-30 border-y border-sidi-ink/10 bg-cream/85 backdrop-blur-xl">
+      <div className="container-b">
+        <div className="no-scrollbar flex justify-start gap-2 overflow-x-auto py-3 md:justify-center">
           {items.map((i) => (
             <a
               key={i.id}

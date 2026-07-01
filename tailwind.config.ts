@@ -40,9 +40,9 @@ const config: Config = {
         "3xl": "2.25rem",
       },
       boxShadow: {
-        soft: "0 18px 50px -24px rgba(14, 58, 71, 0.45)",
-        card: "0 24px 60px -30px rgba(14, 58, 71, 0.55)",
-        lift: "0 30px 80px -32px rgba(14, 58, 71, 0.6)",
+        soft: "0 18px 50px -26px rgba(14, 58, 71, 0.28)",
+        card: "0 24px 60px -30px rgba(14, 58, 71, 0.36)",
+        lift: "0 30px 80px -34px rgba(14, 58, 71, 0.42)",
       },
       maxWidth: {
         content: "1200px",

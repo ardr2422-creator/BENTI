@@ -8,6 +8,26 @@ Branche de travail : **`benti-site`**. Build vérifié **propre** (`npm run buil
 
 ---
 
+## ✅ Corrections appliquées (2e passe, retours client)
+
+- **Héros** : nouvelle bannière Sidi Bou Saïd (`/images/hero/sidi-bou.jpg`), repère « Défiler » retiré.
+- **Nav** : barre en **glassmorphism arrondie** (visible en permanence, même sur le héros).
+- **Bannières défilantes** : `@keyframes marquee` déclarée en dur (Tailwind la purgeait) → toutes les marquees défilent (accueil, footer, strip traiteur, stories).
+- **Notre histoire** : badge « ma fille » + photo fondateurs **à l'intérieur** de l'image.
+- **Makloubs** : hover d'ombre corrigé (plus de découpe), `scroll-snap-stop`, **clic = recentrage** sur PC, cartes latérales floutées ; 3 bulles catégories en **texte blanc** + arrondis nets.
+- **Avis** : **vrais avis Google** (fichier `avis_benti.txt`, avatars réels, badge Google), **sans guillemets**, slider en **peek flouté** (voisines floues, centre net). Note réelle **4,8/5 · 669 avis**.
+- **Instagram / stories** : sélection **curée** (visuels lumineux, on écarte les captures sombres) + **défilement auto**.
+- **Traiteur (bloc accueil)** : arrondis de la grille d'images corrigés.
+- **Adresses** : **bonnes photos** de devanture (Paris 11 bleu / Paris 3 orange) + **horaires affichés sur les deux** cartes.
+- **Footer** : bandeau défilant « Benti » au-dessus.
+- **Page carte** : filtres « Sans gluten / Vegan / Version piquante » retirés (+ mentions « version piquante » nettoyées dans les textes) ; filtres **centrés, sous le bloc téléphone**, espacés du menu quand ils se collent.
+- **Page traiteur** : citation sur **fond couleur unie**, galerie **bento** (tailles variées), strip d'images qui défile.
+- **Ombres** globalement adoucies (fin du « fond gris » sur les arrondis).
+
+> ⚠️ Vérif mobile 375 px toujours non concluante via l'outil navigateur (la fenêtre Chrome reste bloquée à 1920 px de large, impossible d'émuler un viewport mobile). Code responsive revu à la main (mobile-first, `sm/md/lg`) : nav→drawer, coverflow scroll-snap, slider avis `peek` 86 %, bento 2 colonnes, adresses 1 colonne. **À re-checker dans les devtools.**
+
+---
+
 ## ⚠️ Déploiement — À LIRE (rien n'a été poussé)
 
 - **Aucun `git push` n'a été fait.** Tout est en local sur la branche `benti-site`.
@@ -90,10 +110,10 @@ Batatas / Boissons) → **slider vidéo** (VideoShowcase) → **slider avis** + 
 
 ## Placeholders / à remplacer avec leurs vrais éléments
 
-- **Avis (slider témoignages)** : rédigés en **illustratif** (prénoms + quartier), ton
-  fidèle. La note agrégée 4,8/665 est réelle. → À remplacer par de vrais avis Google /
-  reposts au lancement. (Les 57 stories du strip sont, elles, réelles.)
-- **Mentions presse** (Le Bonbon, Enlarge your Paris…) : illustratives → à confirmer.
+- **Avis (slider témoignages)** : ✅ désormais de **vrais avis Google** (extraits de
+  `infos/benti_avis_google/avis_benti.txt`, avatars réels, note **4,8/5 · 669 avis**).
+- **Mentions presse** (Le Bonbon, Enlarge your Paris…) : **illustratives** → à confirmer
+  ou remplacer par de vraies retombées.
 - **Photos par recette de makloub** : aucune photo par recette dans `/infos`. Les cartes
   makloub sont des **cartes couleur** (design assumé, honnête). → Fournir des photos par
   recette pour basculer en cartes photo (le composant `MakloubCard` gère déjà `image`).

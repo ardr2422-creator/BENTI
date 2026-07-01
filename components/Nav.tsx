@@ -37,16 +37,15 @@ export default function Nav() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <nav
-        aria-label="Navigation principale"
-        className={`transition-all duration-500 ease-smooth ${
-          scrolled
-            ? "bg-cream/85 shadow-[0_10px_40px_-28px_rgba(14,58,71,0.7)] backdrop-blur-md"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="container-b flex items-center justify-between gap-4 py-3">
+    <header className="fixed inset-x-0 top-0 z-50 pt-3 md:pt-4">
+      <nav aria-label="Navigation principale" className="container-b">
+        <div
+          className={`flex items-center justify-between gap-4 rounded-[1.75rem] border px-3 py-2 backdrop-blur-xl transition-all duration-500 ease-smooth md:px-5 md:py-2.5 ${
+            scrolled
+              ? "border-white/50 bg-cream/85 shadow-[0_16px_44px_-22px_rgba(14,58,71,0.6)]"
+              : "border-white/40 bg-cream/60 shadow-[0_12px_34px_-24px_rgba(14,58,71,0.45)]"
+          }`}
+        >
           <Link href={home} aria-label="Benti" className="relative z-10 shrink-0">
             <Image
               src="/brand/logo.png"

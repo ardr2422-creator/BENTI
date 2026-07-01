@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Marquee from "./Marquee";
-import { STORY_IMAGES } from "@/lib/reviews";
 
-// Sélection étalée dans la collection de stories repostées.
-const picks = STORY_IMAGES.filter((_, i) => i % 3 === 0).slice(0, 18);
+// Sélection CURÉE de stories repostées (vérifiées visuellement) : on privilégie
+// les visuels lumineux/appétissants et on écarte les captures sombres/floues.
+const CURATED = [1, 8, 5, 20, 10, 28, 34, 11, 4, 31, 16, 13, 22, 19, 2, 25];
+const picks = CURATED.map((n) => `/reviews/story_${String(n).padStart(2, "0")}.jpg`);
 
 export default function StoriesStrip() {
   const cards = picks.map((src, i) => (

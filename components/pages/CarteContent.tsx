@@ -42,23 +42,11 @@ export default function CarteContent({ lang }: { lang: Lang }) {
         }
         lead={c.lead}
       >
-        <div className="flex flex-wrap items-center gap-2">
-          {tr.menuOptions.map((o) => (
-            <span
-              key={o}
-              className="rounded-full border border-sidi-ink/15 bg-paper px-3 py-1.5 text-sm font-semibold text-sidi-ink"
-            >
-              {o}
-            </span>
-          ))}
-          <span className="text-sm text-ink-soft">· {tr.menuFootnote}</span>
-        </div>
+        <p className="text-sm font-semibold text-ink-soft">{tr.menuFootnote}</p>
       </PageHeader>
 
-      <MenuNav items={navItems} />
-
       {/* Commander */}
-      <section id="commander" className="scroll-mt-32 bg-sidi-ink py-10 text-cream">
+      <section id="commander" className="scroll-mt-40 bg-sidi-ink py-10 text-cream">
         <div className="container-b flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <p className="eyebrow !text-sun">{c.orderEyebrow}</p>
@@ -79,12 +67,14 @@ export default function CarteContent({ lang }: { lang: Lang }) {
         </div>
       </section>
 
+      <MenuNav items={navItems} />
+
       <div className="bg-cream">
         {menu.map((section, si) => (
           <section
             key={section.id}
             id={section.id}
-            className="scroll-mt-32 border-b border-sidi-ink/5 py-16 md:py-20"
+            className="scroll-mt-40 border-b border-sidi-ink/5 py-16 md:py-20"
           >
             <div className="container-b">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">

@@ -14,8 +14,8 @@ export const SITE = {
   priceRange: "€",
   cuisine: ["Tunisienne", "Méditerranéenne", "Street food"],
   email: "contact@benti-paris.fr", // à confirmer
-  // Note social réelle (Google / TripAdvisor) — source RestaurantGuru, juin 2026.
-  rating: { value: "4.8", count: 665, source: "Google" },
+  // Note social réelle (Google) — source avis_benti.txt, extraction 01/07/2026.
+  rating: { value: "4.8", count: 669, source: "Google" },
   // Aucun lien de livraison public trouvé au crawl : Benti fonctionne sur place
   // & à emporter. Brancher Uber Eats / Deliveroo ici quand disponibles.
   delivery: {
@@ -67,7 +67,7 @@ export const ADDRESSES: Address[] = [
     mapLink: "https://www.google.com/maps/search/?api=1&query=31+rue+L%C3%A9on+Frot+75011+Paris",
     neighborhood: "Charonne · Voltaire",
     hours: HOURS,
-    photo: "/images/restaurant/resto-2.webp",
+    photo: "/images/restaurant/paris-11.webp",
   },
   {
     slug: "paris-3",
@@ -86,7 +86,7 @@ export const ADDRESSES: Address[] = [
       "https://www.google.com/maps/search/?api=1&query=16+rue+des+Filles+du+Calvaire+75003+Paris",
     neighborhood: "Haut-Marais · Filles du Calvaire",
     hours: HOURS,
-    photo: "/images/food/food-1.jpg",
+    photo: "/images/restaurant/paris-3.webp",
   },
 ];
 
@@ -172,7 +172,7 @@ export const MENU: MenuSection[] = [
     id: "makloub",
     title: "Sandwich makloub",
     intro:
-      "Une pâte à pain entre la pizza et la pita, garnie et pliée. Notre héros. Version piquante disponible.",
+      "Une pâte à pain entre la pizza et la pita, garnie et pliée. Notre héros, cinq recettes.",
     note: "Makloub seul 9,90 € · Makloub + batatas 10,90 €",
     items: MAKLOUBS,
   },

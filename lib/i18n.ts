@@ -113,7 +113,7 @@ const fr = {
   highlights: {
     eyebrow: "Les héros de la carte",
     title: { pre: "Cinq makloubs, ", accent: "un aller simple pour Tunis." } as Title,
-    lead: "Makloub seul, ou makloub + batatas. Version piquante disponible pour les courageux.",
+    lead: "Makloub seul, ou makloub + batatas. Généreux, doré, plié devant vous.",
     ctaAll: "Toute la carte",
     dragHint: "← Faites glisser pour explorer →",
     cats: [
@@ -341,7 +341,7 @@ const en: Content = {
   highlights: {
     eyebrow: "The heroes of the menu",
     title: { pre: "Five makloubs, ", accent: "a one-way ticket to Tunis." },
-    lead: "Makloub on its own, or makloub + batatas. A spicy version is available for the brave.",
+    lead: "Makloub on its own, or makloub + batatas. Generous, golden, folded in front of you.",
     ctaAll: "See the full menu",
     dragHint: "← Swipe to explore →",
     cats: [

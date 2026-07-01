@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import Marquee from "./Marquee";
 import { SITE } from "@/lib/site";
 import { getLang, localizedHref, t } from "@/lib/i18n";
 import { getAddressViews } from "@/lib/localized";
@@ -16,8 +17,26 @@ export default function Footer() {
   const home = lang === "fr" ? "/" : "/en";
   const year = new Date().getFullYear();
 
+  const nameStrip = [
+    "Benti",
+    SITE.tagline,
+    "Benti",
+    "Sidi Bou Saïd",
+    "Benti",
+    "Le makloub",
+  ];
+
   return (
     <footer className="relative overflow-hidden bg-sidi-ink text-cream">
+      {/* Bandeau défilant avec le nom du resto, au-dessus du footer */}
+      <div className="relative z-10 overflow-hidden bg-harissa py-5 text-cream md:py-6">
+        <div className="zellige absolute inset-0 opacity-10" aria-hidden />
+        <Marquee
+          items={nameStrip}
+          duration={24}
+          separator={<span aria-hidden className="px-5 text-sun">✦</span>}
+        />
+      </div>
       <div className="zellige absolute inset-0 opacity-[0.12]" aria-hidden />
       <div className="container-b relative py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-10">
