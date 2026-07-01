@@ -6,7 +6,10 @@ export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description:
     "Comment Benti traite et protège vos données personnelles, conformément au RGPD.",
-  alternates: { canonical: "/politique-confidentialite" },
+  alternates: {
+    canonical: "/politique-confidentialite",
+    languages: { fr: "/politique-confidentialite", en: "/en/privacy-policy" },
+  },
   robots: { index: false, follow: true },
 };
 

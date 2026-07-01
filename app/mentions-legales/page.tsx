@@ -5,7 +5,10 @@ import { ADDRESSES, SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site Benti — restaurant tunisien à Paris.",
-  alternates: { canonical: "/mentions-legales" },
+  alternates: {
+    canonical: "/mentions-legales",
+    languages: { fr: "/mentions-legales", en: "/en/legal-notice" },
+  },
   robots: { index: false, follow: true },
 };
 

@@ -5,7 +5,10 @@ export const metadata: Metadata = {
   title: "Politique de cookies",
   description:
     "Quels cookies utilise le site Benti et comment gérer votre consentement.",
-  alternates: { canonical: "/cookies" },
+  alternates: {
+    canonical: "/cookies",
+    languages: { fr: "/cookies", en: "/en/cookies" },
+  },
   robots: { index: false, follow: true },
 };
 

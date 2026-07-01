@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { TESTIMONIALS } from "@/lib/reviews";
+import { TESTIMONIALS, type Testimonial } from "@/lib/reviews";
 import { ArrowRight } from "./icons";
 
 function Stars({ n }: { n: number }) {
@@ -16,10 +16,14 @@ function Stars({ n }: { n: number }) {
   );
 }
 
-export default function ReviewSlider() {
+export default function ReviewSlider({
+  items = TESTIMONIALS,
+}: {
+  items?: Testimonial[];
+}) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const count = TESTIMONIALS.length;
+  const count = items.length;
   const touchX = useRef<number | null>(null);
 
   const go = useCallback(
@@ -54,7 +58,7 @@ export default function ReviewSlider() {
           className="flex transition-transform duration-700 ease-smooth"
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
-          {TESTIMONIALS.map((t, i) => (
+          {items.map((t, i) => (
             <figure
               key={i}
               className="w-full shrink-0 px-1"
@@ -85,7 +89,7 @@ export default function ReviewSlider() {
 
       <div className="mt-7 flex items-center justify-between">
         <div className="flex gap-2" role="tablist" aria-label="Avis clients">
-          {TESTIMONIALS.map((_, i) => (
+          {items.map((_, i) => (
             <button
               key={i}
               type="button"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AddressContent from "@/components/pages/AddressContent";
 import { ADDRESSES } from "@/lib/site";
+import { getAddressView } from "@/lib/localized";
 
 export function generateStaticParams() {
   return ADDRESSES.map((a) => ({ slug: a.slug }));
@@ -15,25 +16,27 @@ export async function generateMetadata({
   const { slug } = await params;
   const a = ADDRESSES.find((x) => x.slug === slug);
   if (!a) return {};
+  const v = getAddressView(a, "en");
   return {
-    title: `Benti ${a.city} — ${a.street}`,
-    description: `Restaurant tunisien Benti ${a.city} : ${a.street}, ${a.postalCode} ${a.locality}. Makloubs et bols ensoleillés faits maison. Horaires, téléphone (${a.phone}) et itinéraire.`,
+    title: `Benti ${v.cityView} — ${a.street}`,
+    description: `Benti Tunisian restaurant ${v.cityView}: ${a.street}, ${a.postalCode} ${a.locality}. Homemade makloubs and sunny bowls. Hours, phone (${a.phone}) and directions.`,
     alternates: {
-      canonical: `/adresses/${a.slug}`,
+      canonical: `/en/locations/${a.slug}`,
       languages: {
         fr: `/adresses/${a.slug}`,
         en: `/en/locations/${a.slug}`,
       },
     },
     openGraph: {
-      title: `Benti ${a.city}`,
-      url: `/adresses/${a.slug}`,
+      title: `Benti ${v.cityView}`,
+      url: `/en/locations/${a.slug}`,
+      locale: "en_GB",
       images: [{ url: a.photo }],
     },
   };
 }
 
-export default async function AddressPage({
+export default async function LocationPageEN({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -41,5 +44,5 @@ export default async function AddressPage({
   const { slug } = await params;
   const address = ADDRESSES.find((x) => x.slug === slug);
   if (!address) notFound();
-  return <AddressContent address={address} lang="fr" />;
+  return <AddressContent address={address} lang="en" />;
 }

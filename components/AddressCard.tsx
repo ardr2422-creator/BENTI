@@ -1,16 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Address } from "@/lib/site";
+import { localizedHref, t, type Lang } from "@/lib/i18n";
+import { getAddressView } from "@/lib/localized";
 import { ArrowUpRight, Clock, Phone, Pin } from "./icons";
 
-export default function AddressCard({ address }: { address: Address }) {
-  const a = address;
+export default function AddressCard({
+  address,
+  lang = "fr",
+}: {
+  address: Address;
+  lang?: Lang;
+}) {
+  const a = getAddressView(address, lang);
+  const tr = t(lang).common;
+  const href = localizedHref(`/adresses/${a.slug}`, lang);
+
   return (
     <article className="reveal lift group flex flex-col overflow-hidden rounded-3xl border border-sidi-ink/10 bg-paper shadow-soft">
-      <Link href={`/adresses/${a.slug}`} className="relative block aspect-[16/11] overflow-hidden">
+      <Link href={href} className="relative block aspect-[16/11] overflow-hidden">
         <Image
           src={a.photo}
-          alt={`Benti ${a.city}`}
+          alt={`Benti ${a.cityView}`}
           fill
           sizes="(max-width: 768px) 100vw, 560px"
           className="object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
@@ -22,7 +33,7 @@ export default function AddressCard({ address }: { address: Address }) {
             <Pin className="h-3.5 w-3.5" />
             {a.neighborhood}
           </span>
-          <h3 className="mt-2 font-display text-3xl text-cream">{a.city}</h3>
+          <h3 className="mt-2 font-display text-3xl text-cream">{a.cityView}</h3>
         </div>
       </Link>
 
@@ -41,12 +52,12 @@ export default function AddressCard({ address }: { address: Address }) {
           </a>
           <span className="inline-flex items-center gap-2 text-ink-soft">
             <Clock className="h-4 w-4 text-olive" />
-            Lun – Sam · le midi
+            {tr.lunchOnly}
           </span>
         </div>
         <div className="mt-auto flex items-center gap-3 pt-2">
-          <Link href={`/adresses/${a.slug}`} className="btn btn--sidi !py-2.5 !px-4">
-            <span>Voir l'adresse</span>
+          <Link href={href} className="btn btn--sidi !py-2.5 !px-4">
+            <span>{tr.seeAddress}</span>
             <ArrowUpRight className="h-4 w-4" />
           </Link>
           <a
@@ -55,7 +66,7 @@ export default function AddressCard({ address }: { address: Address }) {
             rel="noopener noreferrer"
             className="btn btn--ghost !py-2.5 !px-4"
           >
-            Itinéraire
+            {tr.itinerary}
           </a>
         </div>
       </div>

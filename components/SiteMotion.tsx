@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
+import { getLang } from "@/lib/i18n";
 
 /**
  * Système d'animation global du site.
@@ -80,6 +81,9 @@ export default function SiteMotion() {
 
   // Reveal + stagger + coverflow — ré-évalués à chaque changement de route.
   useEffect(() => {
+    // Langue du document (le layout racine est partagé FR/EN)
+    document.documentElement.lang = getLang(pathname);
+
     const cleanups: Array<() => void> = [];
 
     // Stagger index

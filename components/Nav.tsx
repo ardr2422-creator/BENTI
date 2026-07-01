@@ -4,11 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { NAV, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { altPath, getLang, localizedHref, t } from "@/lib/i18n";
 import { ArrowUpRight, Close, Instagram } from "./icons";
 
 export default function Nav() {
   const pathname = usePathname();
+  const lang = getLang(pathname);
+  const tr = t(lang);
+  const home = lang === "fr" ? "/" : "/en";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -19,7 +23,6 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fermeture au changement de route + verrou du scroll quand le tiroir est ouvert
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -28,8 +31,10 @@ export default function Nav() {
     };
   }, [open]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (frHref: string) => {
+    const target = localizedHref(frHref, lang);
+    return frHref === "/" ? pathname === target : pathname.startsWith(target);
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -42,11 +47,7 @@ export default function Nav() {
         }`}
       >
         <div className="container-b flex items-center justify-between gap-4 py-3">
-          <Link
-            href="/"
-            aria-label="Benti, accueil"
-            className="relative z-10 shrink-0"
-          >
+          <Link href={home} aria-label="Benti" className="relative z-10 shrink-0">
             <Image
               src="/brand/logo.png"
               alt="Benti"
@@ -60,10 +61,10 @@ export default function Nav() {
           </Link>
 
           <div className="hidden items-center gap-1 lg:flex">
-            {NAV.map((item) => (
+            {tr.nav.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localizedHref(item.href, lang)}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                   isActive(item.href)
@@ -80,6 +81,13 @@ export default function Nav() {
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <Link
+              href={altPath(pathname, lang === "fr" ? "en" : "fr")}
+              className="rounded-full border border-sidi-ink/15 px-3 py-2 text-sm font-bold text-sidi-ink transition-colors hover:bg-sidi-ink hover:text-cream"
+              aria-label={lang === "fr" ? "Switch to English" : "Passer en français"}
+            >
+              {tr.common.langLabel}
+            </Link>
             <a
               href={SITE.instagram}
               target="_blank"
@@ -89,17 +97,16 @@ export default function Nav() {
             >
               <Instagram className="h-5 w-5" />
             </a>
-            <Link href="/carte" className="btn btn--flame">
-              <span>Commander</span>
+            <Link href={localizedHref("/carte", lang)} className="btn btn--flame">
+              <span>{tr.common.order}</span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
 
-          {/* Burger */}
           <button
             type="button"
             onClick={() => setOpen(true)}
-            aria-label="Ouvrir le menu"
+            aria-label="Menu"
             aria-expanded={open}
             className="relative z-10 flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border border-sidi-ink/15 lg:hidden"
           >
@@ -139,23 +146,19 @@ export default function Nav() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Fermer le menu"
+              aria-label="Fermer"
               className="grid h-11 w-11 place-items-center rounded-full border border-sidi-ink/15 text-sidi-ink"
             >
               <Close className="h-5 w-5" />
             </button>
           </div>
 
-          <nav
-            aria-label="Navigation mobile"
-            className="flex flex-1 flex-col gap-1 px-6 pt-4"
-          >
-            {NAV.map((item, i) => (
+          <nav aria-label="Navigation mobile" className="flex flex-1 flex-col gap-1 px-6 pt-4">
+            {tr.nav.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localizedHref(item.href, lang)}
                 className="group flex items-center justify-between border-b border-sidi-ink/10 py-4 font-display text-3xl text-sidi-ink"
-                style={{ transitionDelay: `${i * 40}ms` }}
               >
                 <span>{item.label}</span>
                 <ArrowUpRight className="h-6 w-6 text-terracotta opacity-0 transition-opacity group-hover:opacity-100" />
@@ -164,19 +167,30 @@ export default function Nav() {
           </nav>
 
           <div className="space-y-3 px-6 pb-8">
-            <Link href="/carte" className="btn btn--flame w-full justify-center">
-              <span>Commander</span>
+            <Link
+              href={localizedHref("/carte", lang)}
+              className="btn btn--flame w-full justify-center"
+            >
+              <span>{tr.common.order}</span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <a
-              href={SITE.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 text-sm font-semibold text-sidi-ink/80"
-            >
-              <Instagram className="h-4 w-4" />
-              {SITE.instagramHandle}
-            </a>
+            <div className="flex items-center justify-between">
+              <Link
+                href={altPath(pathname, lang === "fr" ? "en" : "fr")}
+                className="rounded-full border border-sidi-ink/15 px-4 py-2 text-sm font-bold text-sidi-ink"
+              >
+                {lang === "fr" ? "English" : "Français"}
+              </Link>
+              <a
+                href={SITE.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-semibold text-sidi-ink/80"
+              >
+                <Instagram className="h-4 w-4" />
+                {SITE.instagramHandle}
+              </a>
+            </div>
           </div>
         </aside>
       </div>

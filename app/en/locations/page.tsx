@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import AdressesContent from "@/components/pages/AdressesContent";
 import { t } from "@/lib/i18n";
 
-const c = t("fr").adresses;
+const c = t("en").adresses;
 
 export const metadata: Metadata = {
   title: c.metaTitle,
   description: c.metaDesc,
   alternates: {
-    canonical: "/adresses",
+    canonical: "/en/locations",
     languages: { fr: "/adresses", en: "/en/locations" },
   },
-  openGraph: { title: "Nos adresses — Benti Paris", url: "/adresses" },
+  openGraph: { title: "Our locations — Benti Paris", url: "/en/locations", locale: "en_GB" },
 };
 
-export default function AdressesPage() {
-  return <AdressesContent lang="fr" />;
+export default function LocationsPageEN() {
+  return <AdressesContent lang="en" />;
 }
