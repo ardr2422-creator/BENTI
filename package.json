@@ -1,24 +1,27 @@
 {
-  "name": "cest-mon-dessert",
+  "name": "benti",
   "version": "1.0.0",
-  "description": "C'est Mon Dessert — site e-commerce de livraison de desserts (tiramisus, donuts, beignets XL, bubble tea) en Île-de-France. Statique (HTML/CSS/JS) + fonctions serverless, hébergé sur Vercel.",
   "private": true,
+  "description": "Benti — restaurant tunisien à Paris. Le makloub de Sidi Bou Saïd.",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "keywords": [
-    "cest-mon-dessert",
-    "dessert",
-    "tiramisu",
-    "donuts",
-    "bubble-tea",
-    "livraison",
-    "ile-de-france",
-    "e-commerce"
-  ],
-  "license": "UNLICENSED",
   "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+    "lenis": "1.1.18",
+    "next": "15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.7",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.3"
   }
 }
