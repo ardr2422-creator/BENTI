@@ -6,12 +6,14 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SITE } from "@/lib/site";
 import { altPath, getLang, localizedHref, t } from "@/lib/i18n";
+import { useOrder } from "./OrderModal";
 import { ArrowUpRight, Close, Instagram } from "./icons";
 
 export default function Nav() {
   const pathname = usePathname();
   const lang = getLang(pathname);
   const tr = t(lang);
+  const { open: openOrder } = useOrder();
   const home = lang === "fr" ? "/" : "/en";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -96,10 +98,10 @@ export default function Nav() {
             >
               <Instagram className="h-5 w-5" />
             </a>
-            <Link href={localizedHref("/carte", lang)} className="btn btn--flame">
+            <button type="button" onClick={openOrder} className="btn btn--flame">
               <span>{tr.common.order}</span>
               <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </button>
           </div>
 
           <button
@@ -166,13 +168,17 @@ export default function Nav() {
           </nav>
 
           <div className="space-y-3 px-6 pb-8">
-            <Link
-              href={localizedHref("/carte", lang)}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openOrder();
+              }}
               className="btn btn--flame w-full justify-center"
             >
               <span>{tr.common.order}</span>
               <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </button>
             <div className="flex items-center justify-between">
               <Link
                 href={altPath(pathname, lang === "fr" ? "en" : "fr")}

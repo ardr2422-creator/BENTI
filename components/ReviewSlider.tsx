@@ -47,7 +47,7 @@ export default function ReviewSlider({
   const [paused, setPaused] = useState(false);
   const [width, setWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const touchX = useRef<number | null>(null);
+  const dragX = useRef<number | null>(null);
   const count = items.length;
 
   useEffect(() => {
@@ -80,18 +80,23 @@ export default function ReviewSlider({
     <div>
       <div
         ref={containerRef}
-        className="relative overflow-hidden py-2"
+        className="relative cursor-grab touch-pan-y select-none overflow-hidden py-2 active:cursor-grabbing"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
-        onTouchStart={(e) => {
-          touchX.current = e.touches[0].clientX;
+        onPointerDown={(e) => {
+          dragX.current = e.clientX;
           setPaused(true);
         }}
-        onTouchEnd={(e) => {
-          if (touchX.current === null) return;
-          const dx = e.changedTouches[0].clientX - touchX.current;
-          if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
-          touchX.current = null;
+        onPointerUp={(e) => {
+          if (dragX.current !== null) {
+            const dx = e.clientX - dragX.current;
+            if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+          }
+          dragX.current = null;
+          if (e.pointerType !== "mouse") setPaused(false);
+        }}
+        onPointerCancel={() => {
+          dragX.current = null;
         }}
       >
         <div className="peek-track" style={{ transform: `translateX(${offset}px)` }}>
@@ -136,41 +141,23 @@ export default function ReviewSlider({
         </div>
       </div>
 
-      <div className="mt-7 flex items-center justify-between">
-        <div className="flex gap-2" role="tablist" aria-label="Avis clients">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Avis ${i + 1}`}
-              aria-selected={i === index}
-              onClick={() => setIndex(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === index
-                  ? "w-7 bg-terracotta"
-                  : "w-2 bg-sidi-ink/20 hover:bg-sidi-ink/40"
-              }`}
-            />
-          ))}
-        </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => go(-1)}
-            aria-label="Avis précédent"
-            className="grid h-11 w-11 place-items-center rounded-full border border-sidi-ink/15 bg-paper text-sidi-ink transition-colors hover:bg-sidi-ink hover:text-cream"
-          >
-            <ArrowRight className="h-5 w-5 rotate-180" />
-          </button>
-          <button
-            type="button"
-            onClick={() => go(1)}
-            aria-label="Avis suivant"
-            className="grid h-11 w-11 place-items-center rounded-full border border-sidi-ink/15 bg-paper text-sidi-ink transition-colors hover:bg-sidi-ink hover:text-cream"
-          >
-            <ArrowRight className="h-5 w-5" />
-          </button>
-        </div>
+      <div className="mt-7 flex items-center justify-center gap-3">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          aria-label="Avis précédent"
+          className="grid h-11 w-11 place-items-center rounded-full border border-sidi-ink/15 bg-paper text-sidi-ink transition-colors hover:bg-sidi-ink hover:text-cream"
+        >
+          <ArrowRight className="h-5 w-5 rotate-180" />
+        </button>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          aria-label="Avis suivant"
+          className="grid h-11 w-11 place-items-center rounded-full border border-sidi-ink/15 bg-paper text-sidi-ink transition-colors hover:bg-sidi-ink hover:text-cream"
+        >
+          <ArrowRight className="h-5 w-5" />
+        </button>
       </div>
     </div>
   );

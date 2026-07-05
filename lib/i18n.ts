@@ -75,6 +75,12 @@ const fr = {
     rights: "Fait maison, à Paris.",
   },
   mobileBar: { menu: "Voir la carte", order: "Commander" },
+  orderModal: {
+    eyebrow: "Commander",
+    title: "Quelle adresse ?",
+    lead: "Choisissez le restaurant le plus proche : on décroche et on prépare tout.",
+    close: "Fermer",
+  },
   hero: {
     eyebrow: "Restaurant tunisien · Paris 11e & 3e",
     titlePre: "Le makloub de ",
@@ -125,7 +131,7 @@ const fr = {
   },
   video: {
     eyebrow: "En vidéo",
-    title: { pre: "Rencontrez Benti, ", accent: "celles et ceux qui la font." } as Title,
+    title: { pre: "Rencontrez Benti, ", accent: "en coulisses." } as Title,
     lead: "Abir vous ouvre les portes : la pâte du makloub, l'esprit Sidi Bou Saïd, l'accueil. La meilleure façon de comprendre Benti, c'est de la regarder vivre.",
     cta: "Voir la carte",
     videoTitle: "Abir vous raconte Benti",
@@ -303,6 +309,12 @@ const en: Content = {
     rights: "Homemade, in Paris.",
   },
   mobileBar: { menu: "See the menu", order: "Order" },
+  orderModal: {
+    eyebrow: "Order",
+    title: "Which location?",
+    lead: "Pick the nearest restaurant — we'll pick up and get everything ready.",
+    close: "Close",
+  },
   hero: {
     eyebrow: "Tunisian restaurant · Paris 11 & 3",
     titlePre: "The makloub of ",
@@ -353,7 +365,7 @@ const en: Content = {
   },
   video: {
     eyebrow: "In video",
-    title: { pre: "Meet Benti, ", accent: "the people behind it." },
+    title: { pre: "Meet Benti, ", accent: "behind the scenes." },
     lead: "Abir opens the doors: the makloub dough, the Sidi Bou Saïd spirit, the welcome. The best way to understand Benti is to watch it come alive.",
     cta: "See the menu",
     videoTitle: "Abir tells the Benti story",

@@ -41,9 +41,7 @@ export default function CarteContent({ lang }: { lang: Lang }) {
           </>
         }
         lead={c.lead}
-      >
-        <p className="text-sm font-semibold text-ink-soft">{tr.menuFootnote}</p>
-      </PageHeader>
+      />
 
       {/* Commander */}
       <section id="commander" className="scroll-mt-40 bg-sidi-ink py-10 text-cream">

@@ -46,7 +46,7 @@ export default function PageHeader({
           </nav>
         )}
         {eyebrow && <p className="reveal eyebrow">{eyebrow}</p>}
-        <h1 className="reveal mt-4 max-w-4xl text-balance font-display text-[clamp(2.4rem,1.8rem+3.5vw,4.4rem)] leading-[1] text-sidi-ink">
+        <h1 className="reveal mt-4 max-w-4xl text-balance font-display text-[clamp(2.4rem,1.8rem+3.5vw,4.4rem)] leading-[1.06] text-sidi-ink">
           {title}
         </h1>
         {lead && (

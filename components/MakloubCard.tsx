@@ -2,12 +2,13 @@ import Image from "next/image";
 import type { Dish } from "@/lib/site";
 import Badge from "./Badge";
 
+// Palette Sidi Bou Saïd : le bleu domine, réchauffé par les accents chauds.
 const THEMES = [
+  { bg: "bg-sidi-deep", fg: "text-cream", ghost: "text-cream/25" },
   { bg: "bg-terracotta", fg: "text-cream", ghost: "text-cream/25" },
+  { bg: "bg-sidi", fg: "text-sidi-ink", ghost: "text-sidi-ink/15" },
   { bg: "bg-harissa", fg: "text-cream", ghost: "text-cream/25" },
   { bg: "bg-olive", fg: "text-cream", ghost: "text-cream/25" },
-  { bg: "bg-sidi-deep", fg: "text-cream", ghost: "text-cream/25" },
-  { bg: "bg-sun", fg: "text-sidi-ink", ghost: "text-sidi-ink/15" },
   { bg: "bg-flame", fg: "text-cream", ghost: "text-cream/25" },
 ];
 

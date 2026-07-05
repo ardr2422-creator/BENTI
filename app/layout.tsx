@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import SiteMotion from "@/components/SiteMotion";
 import CookieBanner from "@/components/CookieBanner";
 import MobileActionBar from "@/components/MobileActionBar";
+import OrderProvider from "@/components/OrderModal";
 import { SITE } from "@/lib/site";
 
 const display = Fraunces({
@@ -83,17 +84,19 @@ export default function RootLayout({
     <html lang="fr" className={`${display.variable} ${body.variable} ${hand.variable}`}>
       <body>
         <SiteMotion />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-sidi-ink focus:px-4 focus:py-2 focus:text-cream"
-        >
-          Aller au contenu
-        </a>
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
-        <MobileActionBar />
-        <CookieBanner />
+        <OrderProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-sidi-ink focus:px-4 focus:py-2 focus:text-cream"
+          >
+            Aller au contenu
+          </a>
+          <Nav />
+          <main id="main">{children}</main>
+          <Footer />
+          <MobileActionBar />
+          <CookieBanner />
+        </OrderProvider>
       </body>
     </html>
   );

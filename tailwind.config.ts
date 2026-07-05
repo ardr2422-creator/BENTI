@@ -40,9 +40,11 @@ const config: Config = {
         "3xl": "2.25rem",
       },
       boxShadow: {
-        soft: "0 18px 50px -26px rgba(14, 58, 71, 0.28)",
-        card: "0 24px 60px -30px rgba(14, 58, 71, 0.36)",
-        lift: "0 30px 80px -34px rgba(14, 58, 71, 0.42)",
+        // Ombres portées neutralisées (demande client : trop présentes,
+        // découpaient le contenu). On s'appuie sur les bordures + couleurs.
+        soft: "none",
+        card: "none",
+        lift: "none",
       },
       maxWidth: {
         content: "1200px",

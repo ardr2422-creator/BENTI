@@ -10,19 +10,26 @@ import { localizedHref, t, type Lang } from "@/lib/i18n";
 import { getAddressViews } from "@/lib/localized";
 import { breadcrumbSchema } from "@/lib/schema";
 
-const GALLERY = [1, 3, 5, 7, 9, 11, 13, 15].map((n) => `/catering/catering-${n}.jpg`);
+const GALLERY = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 22].map(
+  (n) => `/catering/catering-${n}.jpg`
+);
 const STRIP = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20].map((n) => `/catering/catering-${n}.jpg`);
 
-// Trames bento : tuiles de tailles variées (feature 2×2, larges, hautes).
+// Trames bento : uniquement des tuiles CARRÉES (1×1), VERTICALES (1×2) ou
+// des grands carrés (2×2). Jamais d'image horizontale.
 const BENTO = [
   "col-span-2 row-span-2",
+  "row-span-2",
+  "",
   "",
   "",
   "row-span-2",
-  "col-span-2",
+  "col-span-2 row-span-2",
+  "",
+  "row-span-2",
   "",
   "",
-  "col-span-2",
+  "row-span-2",
 ];
 
 export default function TraiteurContent({ lang }: { lang: Lang }) {
@@ -59,19 +66,6 @@ export default function TraiteurContent({ lang }: { lang: Lang }) {
           <ArrowUpRight className="h-4 w-4" />
         </a>
       </PageHeader>
-
-      {/* Bandeau photo */}
-      <section className="relative h-[38vh] min-h-[280px] overflow-hidden">
-        <Image
-          src="/catering/catering-1.jpg"
-          alt={alt}
-          fill
-          sizes="100vw"
-          data-parallax="0.1"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-sidi-ink/45 to-transparent" />
-      </section>
 
       {/* Citation — fond couleur unie */}
       <section className="bg-harissa py-14 text-cream md:py-16">
@@ -144,11 +138,11 @@ export default function TraiteurContent({ lang }: { lang: Lang }) {
           <SectionHeading center eyebrow={c.galleryEyebrow} title={c.galleryTitle} />
         </div>
         <div className="container-b mt-12">
-          <div className="grid auto-rows-[130px] grid-flow-dense grid-cols-2 gap-3 md:auto-rows-[180px] md:grid-cols-4">
+          <div className="grid auto-rows-[44vw] grid-flow-dense grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4">
             {GALLERY.map((src, i) => (
               <div
                 key={src}
-                className={`reveal-img overflow-hidden rounded-2xl shadow-soft ${BENTO[i % BENTO.length]}`}
+                className={`reveal-img overflow-hidden rounded-2xl ${BENTO[i % BENTO.length]}`}
               >
                 <Image
                   src={src}
@@ -163,7 +157,8 @@ export default function TraiteurContent({ lang }: { lang: Lang }) {
             ))}
           </div>
         </div>
-        <div className="mt-6">
+        {/* Marquee séparé nettement du bento */}
+        <div className="mt-16 md:mt-20">
           <Marquee
             pausable
             duration={60}

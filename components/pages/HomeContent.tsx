@@ -8,7 +8,7 @@ import ReviewSlider from "@/components/ReviewSlider";
 import VideoShowcase from "@/components/VideoShowcase";
 import StoriesStrip from "@/components/StoriesStrip";
 import JsonLd from "@/components/JsonLd";
-import { ArrowRight, ArrowUpRight, Bowl, Flame, Instagram, Sparkle } from "@/components/icons";
+import { ArrowRight, ArrowUpRight, Flame, Instagram, Sparkle } from "@/components/icons";
 import { ADDRESSES, SITE, VIDEOS } from "@/lib/site";
 import { localizedHref, t, type Lang } from "@/lib/i18n";
 import { getMakloubs, getPress, getTestimonials } from "@/lib/localized";
@@ -52,7 +52,7 @@ export default function HomeContent({ lang }: { lang: Lang }) {
         <div className="container-b">
           <div className="max-w-2xl">
             <p className="reveal eyebrow !text-sun">{tr.hero.eyebrow}</p>
-            <h1 className="reveal mt-5 text-balance font-display text-[clamp(2.6rem,1.8rem+5vw,5.4rem)] leading-[0.98] text-cream">
+            <h1 className="reveal mt-5 text-balance font-display text-[clamp(2.6rem,1.8rem+5vw,5.4rem)] leading-[1.05] text-cream">
               {tr.hero.titlePre}
               <span className="italic text-sun">{tr.hero.titleAccent}</span>,{" "}
               <span className="display-hand !text-4xl text-harissa md:!text-6xl">
@@ -79,20 +79,17 @@ export default function HomeContent({ lang }: { lang: Lang }) {
               <span className="inline-flex items-center gap-2 text-sm font-semibold">
                 <Flame className="h-4 w-4 text-harissa" /> {tr.hero.stat2}
               </span>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold">
-                <Bowl className="h-4 w-4 text-sun" /> {tr.hero.stat3}
-              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Marquee */}
-      <div className="border-y border-sidi-ink/10 bg-sun py-4 text-sidi-ink">
+      {/* Marquee — bandeau bleu Sidi Bou Saïd */}
+      <div className="border-y border-sidi-ink/10 bg-sidi-deep py-4 text-cream">
         <Marquee
           items={tr.marquee}
           duration={30}
-          separator={<span aria-hidden className="px-3 text-harissa">✦</span>}
+          separator={<span aria-hidden className="px-3 text-sun">✦</span>}
         />
       </div>
 
@@ -118,13 +115,13 @@ export default function HomeContent({ lang }: { lang: Lang }) {
               <span className="absolute left-4 top-4 rotate-[-4deg] rounded-full bg-harissa px-4 py-2 font-hand text-lg text-cream shadow-card md:text-xl">
                 {tr.concept.founderTag}
               </span>
-              {/* Photo fondateurs — encart À L'INTÉRIEUR de l'image */}
-              <div className="absolute bottom-4 right-4 w-28 overflow-hidden rounded-2xl border-4 border-paper shadow-card sm:w-32 md:w-40">
+              {/* Photo fondateurs — encart À L'INTÉRIEUR de l'image (agrandie) */}
+              <div className="absolute bottom-4 right-4 w-36 overflow-hidden rounded-2xl border-4 border-paper sm:w-44 md:w-52">
                 <Image
                   src="/images/founders/abir-yassine.jpg"
                   alt={lang === "fr" ? "Abir et Yassine, fondateurs de Benti" : "Abir and Yassine, founders of Benti"}
-                  width={260}
-                  height={320}
+                  width={320}
+                  height={400}
                   className="aspect-[4/5] h-full w-full object-cover"
                 />
               </div>
