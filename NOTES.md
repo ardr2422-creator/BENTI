@@ -28,27 +28,26 @@ Branche de travail : **`benti-site`**. Build vérifié **propre** (`npm run buil
 
 ---
 
-## ⚠️ Déploiement — À LIRE (rien n'a été poussé)
+## Déploiement — état au 5 juillet 2026
 
-- **Aucun `git push` n'a été fait.** Tout est en local sur la branche `benti-site`.
-- `git remote -v` → `origin` pointe sur **`dr-wings.git`** (et un remote `saiyan` sur
-  `saiyan-food.git`). **Aucun remote ne pointe sur le repo BENTI.**
-- Le dossier `.vercel/project.json` est lié au projet Vercel **`cmd`** (C'est Mon
-  Dessert), **pas** Benti.
-- Conformément à la consigne : **je me suis arrêté avant tout push.** Pousser sur
-  `dr-wings` ou déployer sur le projet Vercel `cmd` écraserait un autre projet.
-
-### À faire au réveil pour déployer (toi)
-1. Créer / récupérer le repo **BENTI** sur GitHub, puis :
-   ```bash
-   git remote add benti https://github.com/<toi>/BENTI.git   # ou rename origin
-   git remote -v            # VÉRIFIER que ça pointe bien sur BENTI
-   git push benti benti-site:main   # ou la branche voulue
-   ```
-2. Lier le bon projet Vercel à BENTI (supprimer/écraser `.vercel/` qui pointe sur `cmd`,
-   ou refaire `vercel link` sur le projet Benti). Next.js est auto-détecté, pas besoin de
-   `vercel.json`.
-3. Vérifier le domaine (`benti-paris.fr`) côté Vercel.
+- ✅ `.vercel/` **relié au bon projet Vercel `benti`** (plus `cmd`) :
+  `prj_afl2gqQssXeXhA6ND7BWNf8fkKrr`, équipe `ardr2422-3225s-projects`.
+- ✅ **Next.js 15.1.6 → 15.5.20** : Vercel refusait tout déploiement
+  (« Vulnerable version of Next.js detected », CVE-2025-29927). Build local revérifié
+  propre après mise à jour.
+- ✅ **Déploiement preview réussi** (build distant Ready, 44 s) :
+  `https://benti-61vij279n-ardr2422-3225s-projects.vercel.app` (302 → login Vercel :
+  protection des previews, ouvrir connecté au compte Vercel).
+- ⏳ **Production non déployée** et **rien poussé sur GitHub** : les deux actions ont été
+  bloquées par le mode auto (confirmation explicite requise). À faire :
+  ```bash
+  git remote add benti https://github.com/ardr2422-creator/BENTI.git  # repo existant et VIDE
+  git push benti benti-site:main
+  vercel deploy --prod
+  ```
+- Reste à vérifier le domaine (`benti-paris.fr`) côté Vercel après la mise en prod.
+- ⚠️ **Disque C: quasi plein** (0 Go libre au moment du déploiement ; ~1,3 Go récupérés
+  en purgeant le cache npm). À nettoyer sérieusement.
 
 ---
 
