@@ -28,26 +28,33 @@ Branche de travail : **`benti-site`**. Build vérifié **propre** (`npm run buil
 
 ---
 
-## Déploiement — état au 5 juillet 2026
+## Déploiement — ✅ EN LIGNE (5 juillet 2026)
 
-- ✅ `.vercel/` **relié au bon projet Vercel `benti`** (plus `cmd`) :
-  `prj_afl2gqQssXeXhA6ND7BWNf8fkKrr`, équipe `ardr2422-3225s-projects`.
-- ✅ **Next.js 15.1.6 → 15.5.20** : Vercel refusait tout déploiement
-  (« Vulnerable version of Next.js detected », CVE-2025-29927). Build local revérifié
-  propre après mise à jour.
-- ✅ **Déploiement preview réussi** (build distant Ready, 44 s) :
-  `https://benti-61vij279n-ardr2422-3225s-projects.vercel.app` (302 → login Vercel :
-  protection des previews, ouvrir connecté au compte Vercel).
-- ⏳ **Production non déployée** et **rien poussé sur GitHub** : les deux actions ont été
-  bloquées par le mode auto (confirmation explicite requise). À faire :
-  ```bash
-  git remote add benti https://github.com/ardr2422-creator/BENTI.git  # repo existant et VIDE
-  git push benti benti-site:main
-  vercel deploy --prod
-  ```
-- Reste à vérifier le domaine (`benti-paris.fr`) côté Vercel après la mise en prod.
-- ⚠️ **Disque C: quasi plein** (0 Go libre au moment du déploiement ; ~1,3 Go récupérés
-  en purgeant le cache npm). À nettoyer sérieusement.
+**Production publique** : https://benti-paris.vercel.app (alias :
+`benti-ardr2422-3225s-projects.vercel.app`). Toutes les routes testées en 200
+(`/`, `/carte`, `/en`, `/traiteur`, `/adresses/paris-11`, `/sitemap.xml`, `/robots.txt`).
+
+Ce qui bloquait, et ce qui a été corrigé :
+1. **Next.js 15.1.6 vulnérable** (CVE-2025-29927) : Vercel refusait tout déploiement
+   (« Vulnerable version of Next.js detected ») → **passé à 15.5.20**, build revérifié.
+2. `.vercel/` pointait sur le projet **`cmd`** → **relié au projet `benti`**
+   (`prj_afl2gqQssXeXhA6ND7BWNf8fkKrr`, équipe `ardr2422-3225s-projects`).
+3. Le projet Vercel était créé **sans preset de framework** (`framework: null`) →
+   build Next OK mais 404 plateforme sur toutes les routes → **preset `nextjs` posé**
+   via l'API, puis redéploiement.
+4. **Protection SSO** réglée sur « tout sauf domaines custom » (prod invisible) →
+   passée en **Standard Protection** (prod publique, previews protégées par login).
+
+**GitHub** : remote `benti` → https://github.com/ardr2422-creator/BENTI, branche
+locale `benti-site` poussée sur `main`. Le projet Vercel est **connecté à ce repo**
+(production branch `main`) → tout push sur `main` redéploie automatiquement.
+`origin` pointe toujours sur l'ancien `dr-wings` — ne pas pousser dessus.
+
+Reste à faire : brancher le domaine réel `benti-paris.fr` (DNS côté client) —
+il sera public d'office.
+
+⚠️ **Disque C: quasi plein** (0 Go libre pendant le déploiement ; ~1,3 Go récupérés en
+purgeant le cache npm). À nettoyer sérieusement.
 
 ---
 
